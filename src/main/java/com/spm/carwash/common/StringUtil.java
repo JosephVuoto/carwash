@@ -5,17 +5,14 @@ public class StringUtil {
         throw new UnsupportedOperationException("u can't instantiate me...");
     }
 
-    /* 判断字符串是否为 null 或长度为 0 */
     public static boolean isEmpty(final CharSequence s) {
         return s == null || s.length() == 0;
     }
 
-    /* 判断字符串是否为 null 或全为空格 */
     public static boolean isTrimEmpty(final String s) {
         return (s == null || s.trim().length() == 0);
     }
 
-    /* 判断字符串是否为 null 或全为空白字符 */
     public static boolean isSpace(final String s) {
         if (s == null) return true;
         for (int i = 0, len = s.length(); i < len; ++i) {
@@ -26,7 +23,6 @@ public class StringUtil {
         return true;
     }
 
-    /* 判断两字符串是否相等 */
     public static boolean equals(final CharSequence s1, final CharSequence s2) {
         if (s1 == s2) return true;
         int length;
@@ -47,17 +43,14 @@ public class StringUtil {
         return s1 == null ? s2 == null : s1.equalsIgnoreCase(s2);
     }
 
-    /* null 转为长度为 0 的字符串 */
     public static String null2Length0(final String s) {
         return s == null ? "" : s;
     }
 
-    /* 返回字符串长度 */
     public static int length(final CharSequence s) {
         return s == null ? 0 : s.length();
     }
 
-    /* 反转字符串 */
     public static String reverse(final String s) {
         if (s == null) return "";
         int len = s.length();
