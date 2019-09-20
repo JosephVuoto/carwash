@@ -1,0 +1,25 @@
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:th="http://www.thymeleaf.org"
+      xmlns:sec="http://www.thymeleaf.org/thymeleaf-extras-springsecurity4">
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+</head>
+<body>
+
+<div>
+
+    <div sec:authorize="isAuthenticated()">
+        <p>Logged in</p>
+        <p>User: <span sec:authentication="name"></span></p>
+        <p>Role: <span sec:authentication="principal.authorities"></span></p>
+    </div>
+    <div sec:authorize="isAnonymous()">
+        <p>Tourist</p>
+    </div>
+</div>
+
+</body>
+</html>
