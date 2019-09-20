@@ -10,7 +10,7 @@ import java.util.List;
  * author name: joseph
  * create time: 2019/09/20 18:54:05
  */
-public class User {
+public class UserSimple {
 
     private int uid;
     private String email;
@@ -23,15 +23,6 @@ public class User {
     private String phoneWork;
     private int role;
     private Integer enabled;
-    private List<Car> cars;
-
-    public List<Car> getCars() {
-        return cars;
-    }
-
-    public void setCars(List<Car> cars) {
-        this.cars = cars;
-    }
 
     public int getUid() {
         return uid;

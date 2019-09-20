@@ -1,6 +1,7 @@
 package com.spm.carwash.dao;
 
 import com.spm.carwash.pojo.User;
+import com.spm.carwash.pojo.UserSimple;
 import org.apache.ibatis.annotations.Mapper;
 
 import java.util.List;
@@ -12,7 +13,7 @@ import java.util.List;
 @Mapper
 public interface UserDao {
 
-    List<User> selectAllUsers();
+    List<UserSimple> selectAllUsers();
 
     User selectByID(Integer id);
 

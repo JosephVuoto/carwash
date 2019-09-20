@@ -25,7 +25,7 @@ public class DefaultController {
 
     @RequestMapping("/profile")
     @ResponseBody
-    public Principal profile(Principal principal){
+    public Principal profile(Principal principal) {
         return principal;
     }
 }

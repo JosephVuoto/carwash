@@ -25,7 +25,7 @@ public class GenEntityMysql {
     private boolean needSql = false; // 是否需要导入包java.sql.*
     private String packageOutPath = "com.spm.carwash.pojo";// 指定实体生成所在包的路径
     private String authorName = "joseph";// 作者名字
-    private String[] generateTables = new String[]{"user", "car", "user_car"};
+    private String[] generateTables = new String[]{};
 //    private String[] generateTables = new String[]{"user_contribute", "user_review"};//指定需要生成的表的表名，全部生成设置为null
 
     /**

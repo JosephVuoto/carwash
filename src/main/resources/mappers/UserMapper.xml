@@ -4,7 +4,6 @@
     <resultMap id="userDetailMap" type="User">
         <id column="uid" property="uid" jdbcType="INTEGER"/>
         <result column="email" property="email" jdbcType="VARCHAR"/>
-        <result column="password" property="password" jdbcType="VARCHAR"/>
         <result column="name" property="name" jdbcType="VARCHAR"/>
         <result column="address" property="address" jdbcType="VARCHAR"/>
         <result column="phone_mobile" property="phoneMobile" jdbcType="VARCHAR"/>
@@ -18,9 +17,20 @@
         </collection>
     </resultMap>
 
-    <select id="selectAllUsers" resultMap="userDetailMap">
-        select * from user left join user_car on user.uid = user_car.uid
-        left join car on car.cid = user_car.cid
+    <resultMap id="userSimpleMap" type="User">
+        <id column="uid" property="uid" jdbcType="INTEGER"/>
+        <result column="email" property="email" jdbcType="VARCHAR"/>
+        <result column="name" property="name" jdbcType="VARCHAR"/>
+        <result column="address" property="address" jdbcType="VARCHAR"/>
+        <result column="phone_mobile" property="phoneMobile" jdbcType="VARCHAR"/>
+        <result column="phone_home" property="phoneHome" jdbcType="VARCHAR"/>
+        <result column="phone_work" property="phoneWork" jdbcType="VARCHAR"/>
+        <result column="role" property="role" jdbcType="INTEGER" />
+        <result column="enabled" property="enabled" jdbcType="BOOLEAN"/>
+    </resultMap>
+
+    <select id="selectAllUsers" resultMap="userSimpleMap">
+        select * from user
     </select>
 
     <select id="selectByID" resultMap="userDetailMap" parameterType="Integer">

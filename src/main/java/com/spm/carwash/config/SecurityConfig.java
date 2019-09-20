@@ -1,7 +1,6 @@
 package com.spm.carwash.config;
 
 import com.spm.carwash.common.CustomAccessDeniedHandler;
-import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.beans.factory.annotation.Qualifier;
 import org.springframework.security.config.annotation.authentication.builders.AuthenticationManagerBuilder;
 import org.springframework.security.config.annotation.web.builders.HttpSecurity;
@@ -9,7 +8,6 @@ import org.springframework.security.config.annotation.web.configuration.EnableWe
 import org.springframework.security.config.annotation.web.configuration.WebSecurityConfigurerAdapter;
 import org.springframework.security.core.userdetails.UserDetailsService;
 import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
-import org.springframework.security.web.access.AccessDeniedHandler;
 
 import javax.annotation.Resource;
 
@@ -22,9 +20,9 @@ import javax.annotation.Resource;
 public class SecurityConfig extends WebSecurityConfigurerAdapter {
 
     @Resource
-    private CustomAccessDeniedHandler accessDeniedHandler;
-    @Resource
     BCryptPasswordEncoder bCryptPasswordEncoder;
+    @Resource
+    private CustomAccessDeniedHandler accessDeniedHandler;
     @Resource
     @Qualifier("userDetailsServiceImpl")
     private UserDetailsService userDetailsService;
@@ -42,9 +40,9 @@ public class SecurityConfig extends WebSecurityConfigurerAdapter {
                 .anyRequest().authenticated()
                 .and()
                 .formLogin()
-                    .loginPage("/login")
-                    .defaultSuccessUrl("/user")
-                    .permitAll()
+                .loginPage("/login")
+                .defaultSuccessUrl("/user")
+                .permitAll()
                 .and()
                 .logout()
                 .permitAll()
