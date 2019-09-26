@@ -33,16 +33,16 @@
 				<!--alert is here-->
 				<div class="container p-3">
 					<div class="row justify-content-md-center">
-						<div th:if="${param.error}" class="col col-lg-10">
-							<div class="alert alert-danger">
-								Error here
+						<div th:if="${alertStatus}" class="col col-lg-10">
+							<div class="alert alert-danger", th:text="${alert}">
+
 							</div>
 						</div>
 					</div>
 				</div>
 				
 
-				<form th:action="@{/user/doSginup}" method="post" class="login100-form validate-form">
+				<form th:action="@{/user/doSignup}" method="post" class="login100-form validate-form">
 					<div class="m-b-26">
 						Fill in the form the become member now
 					</div>

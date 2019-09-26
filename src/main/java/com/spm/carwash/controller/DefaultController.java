@@ -35,7 +35,7 @@ public class DefaultController {
         return "/signup";
     }
 
-    @PostMapping("/doSginup")
+    @PostMapping("/doSignnup")
     @ResponseBody
     public String doSignup() {
         return "Hello world";
