@@ -13,6 +13,12 @@ import java.security.Principal;
  */
 @Controller
 public class DefaultController {
+
+    @GetMapping("/test")
+    public String test() {
+        return "/test";
+    }
+
     @GetMapping("/login")
     public String login() {
         return "/login";
@@ -21,6 +27,11 @@ public class DefaultController {
     @GetMapping("/user")
     public String userInfo() {
         return "/user";
+    }
+
+    @GetMapping("/signup")
+    public String signUp() {
+        return "/signup";
     }
 
     @RequestMapping("/profile")

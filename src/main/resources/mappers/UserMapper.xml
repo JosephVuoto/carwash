@@ -4,6 +4,7 @@
     <resultMap id="userDetailMap" type="User">
         <id column="uid" property="uid" jdbcType="INTEGER"/>
         <result column="email" property="email" jdbcType="VARCHAR"/>
+        <result column="password" property="password" jdbcType="VARCHAR"/>
         <result column="name" property="name" jdbcType="VARCHAR"/>
         <result column="address" property="address" jdbcType="VARCHAR"/>
         <result column="phone_mobile" property="phoneMobile" jdbcType="VARCHAR"/>

@@ -1,6 +1,5 @@
 package com.spm.carwash.pojo;
 
-import com.fasterxml.jackson.annotation.JsonIgnore;
 import com.google.gson.Gson;
 
 import java.util.List;
@@ -14,7 +13,6 @@ public class User {
 
     private int uid;
     private String email;
-    @JsonIgnore
     private String password;
     private String name;
     private String address;

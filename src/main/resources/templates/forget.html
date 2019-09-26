@@ -1,7 +1,7 @@
 <!DOCTYPE html>
 <html lang="en" xmlns="http://www.w3.org/1999/xhtml" xmlns:th="http://www.thymeleaf.org">
 <head>
-	<title>Login</title>
+	<title>Forget Password</title>
 	
 	<meta charset="UTF-8">
 	<meta name="viewport" content="width=device-width, initial-scale=1">
@@ -24,7 +24,7 @@
 			<div class="wrap-login100">
 				<div class="login100-form-title" style="background-image: url(images/banner.jpg);">
 					<span class="login100-form-title-1">
-						Login
+						Forget Password
 					</span>
 					<span class="login100-form-title-2">
 						Gabriel & David Car Wash
@@ -35,12 +35,12 @@
 					<div class="row justify-content-md-center">
 						<div th:if="${param.error}" class="col col-lg-10">
 							<div class="alert alert-danger">
-								Invalid email or password.
+								Error here
 							</div>
 						</div>
-						<div th:if="${param.logout}" class="col col-lg-10">
-							<div class="alert alert-info">
-								You have been logged out.
+						<div th:if="${param.error}" class="col col-lg-10">
+							<div class="alert alert-success">
+								Success
 							</div>
 						</div>
 					</div>
@@ -48,43 +48,25 @@
 				
 
 				<form th:action="@{/login}" method="post" class="login100-form validate-form">
-					
+					<div class="m-b-26">
+						Provide your email to reset the password.
+					</div>
+
 					<div class="wrap-input100 validate-input m-b-26" data-validate="Email is required">
 						<span class="label-input100">Email</span>
 						<input class="input100" type="text" name="email" placeholder="Enter email">
 						<span class="focus-input100"></span>
 					</div>
 
-					<div class="wrap-input100 validate-input m-b-18" data-validate = "Password is required">
-						<span class="label-input100">Password</span>
-						<input class="input100" type="password" name="pass" placeholder="Enter password">
-						<span class="focus-input100"></span>
-					</div>
-
-					<div class="flex-sb-m w-full p-b-30">
-						<div class="contact100-form-checkbox">
-							<input class="input-checkbox100" id="ckb1" type="checkbox" name="remember-me">
-							<label class="label-checkbox100" for="ckb1">
-								Remember me
-							</label>
-						</div>
-
-						<div>
-							<a href="forget.html" class="txt1">
-								Forgot Password?
-							</a>
-						</div>
-					</div>
-
 					<div class="container-login100-form-btn">
 						<button class="login100-form-btn">
-							Login
+							Submit
 						</button>
 					</div>
 					<div class="flex-sb-m w-full p-2">
 						<div>
-							<a th:href="@{/signup}" class="txt1">
-								Sign Up
+							<a href="login.html" class="txt1">
+								Go back to Login
 							</a>
 						</div>
 					</div>
