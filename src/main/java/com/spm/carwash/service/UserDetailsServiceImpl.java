@@ -1,8 +1,10 @@
 package com.spm.carwash.service;
 
+import com.google.gson.Gson;
 import com.spm.carwash.dao.UserDao;
 import com.spm.carwash.pojo.SecurityUser;
 import com.spm.carwash.pojo.User;
+import com.spm.carwash.pojo.UserCar;
 import org.springframework.security.core.userdetails.UserDetails;
 import org.springframework.security.core.userdetails.UserDetailsService;
 import org.springframework.security.core.userdetails.UsernameNotFoundException;
@@ -25,20 +27,16 @@ public class UserDetailsServiceImpl implements UserDetailsService {
     @Override
     public UserDetails loadUserByUsername(String s) throws UsernameNotFoundException {
         User user = userDao.selectByEmail(s);
+        System.out.println(new Gson().toJson(user));
         return new SecurityUser(user);
     }
 
-    public void doRegister(String email, String password,
-                           String name, String address,
-                           String phoneMobile, String phoneHome, String phoneWork) {
-        User user = new User();
-        user.setEmail(email);
-        user.setName(name);
-        user.setAddress(address);
-        user.setPhoneMobile(phoneMobile);
-        user.setPhoneHome(phoneHome);
-        user.setPhoneWork(phoneWork);
-        user.setPassword(bCryptPasswordEncoder.encode(password));
+    public void doRegister(User user) {
+        user.setPassword(bCryptPasswordEncoder.encode(user.getPassword()));
         userDao.addUser(user);
+    }
+
+    public void addUserCar(UserCar userCar) {
+        userDao.addUserCar(userCar);
     }
 }

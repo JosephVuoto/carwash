@@ -8,7 +8,9 @@ package com.spm.carwash.pojo;
 public class Car {
 
     private int cid;
-    private String cname;
+    private String carName;
+    private String carNumber;
+    private String carType;
 
     public int getCid() {
         return cid;
@@ -18,12 +20,28 @@ public class Car {
         this.cid = cid;
     }
 
-    public String getCname() {
-        return cname;
+    public String getCarName() {
+        return carName;
     }
 
-    public void setCname(String cname) {
-        this.cname = cname;
+    public void setCarName(String carName) {
+        this.carName = carName;
+    }
+
+    public String getCarNumber() {
+        return carNumber;
+    }
+
+    public void setCarNumber(String carNumber) {
+        this.carNumber = carNumber;
+    }
+
+    public String getCarType() {
+        return carType;
+    }
+
+    public void setCarType(String carType) {
+        this.carType = carType;
     }
 }
 

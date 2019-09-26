@@ -4,6 +4,7 @@ import com.spm.carwash.dao.AppointmentDao;
 import com.spm.carwash.dao.UserDao;
 import com.spm.carwash.pojo.NewAppointment;
 import com.spm.carwash.pojo.User;
+import com.spm.carwash.pojo.UserCar;
 import com.spm.carwash.service.UserDetailsServiceImpl;
 import org.junit.Test;
 import org.junit.runner.RunWith;
@@ -29,15 +30,12 @@ public class CarwashApplicationTests {
 
     @Test
     public void test() {
-        User user = new User();
-        user.setName("Joseph");
-        user.setPassword("12345678");
-        user.setEmail("joseph@joseph.com");
-        user.setRole(0);
-        user.setEnabled(1);
-        user.setAddress("123");
-        userDetailsService.doRegister("joseph@joseph.com", "12345678",
-                "joseph", "123", "1", "2", "3");
+        UserCar userCar = new UserCar();
+        userCar.setUid(8);
+        userCar.setCarName("test_name");
+        userCar.setCarNumber("1234");
+        userCar.setCarType(1);
+        userDao.addUserCar(userCar);
     }
 
 }

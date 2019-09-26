@@ -42,7 +42,7 @@
 				</div>
 				
 
-				<form th:action="@{/login}" method="post" class="login100-form validate-form">
+				<form th:action="@{/user/doSginup}" method="post" class="login100-form validate-form">
 					<div class="m-b-26">
 						Fill in the form the become member now
 					</div>
@@ -59,25 +59,25 @@
 
 					<div class="wrap-input100 validate-input m-b-18" data-validate = "Password is required">
 						<span class="label-input100">Password</span>
-						<input class="input100" type="password" name="singup-pass" id="singup-pass" placeholder="Enter password *">
+						<input class="input100" type="password" name="password" id="singup-pass" placeholder="Enter password *">
 						<span class="focus-input100"></span>
 					</div>
 
 					<div class="wrap-input100 validate-input m-b-18" data-validate = "Password does not match">
 						<span class="label-input100">Confirm Password</span>
-						<input class="input100" type="password" name="confirm-pass" placeholder="Confirm password *">
+						<input class="input100" type="password" name="passwordConfirm" placeholder="Confirm password *">
 						<span class="focus-input100"></span>
 					</div>
 
 					<div class="wrap-input100 validate-input m-b-18" data-validate = "First name is required">
 						<span class="label-input100">First Name</span>
-						<input class="input100" type="text" name="firstname" placeholder="Enter first name *">
+						<input class="input100" type="text" name="firstName" placeholder="Enter first name *">
 						<span class="focus-input100"></span>
 					</div>
 
 					<div class="wrap-input100 validate-input m-b-18" data-validate = "Last name is required">
 						<span class="label-input100">Last Name</span>
-						<input class="input100" type="text" name="firstname" placeholder="Enter last name *">
+						<input class="input100" type="text" name="lastName" placeholder="Enter last name *">
 						<span class="focus-input100"></span>
 					</div>
 
@@ -93,19 +93,19 @@
 
 					<div class="wrap-input100 validate-input m-b-18" data-validate = "Mobile phone is required">
 						<span class="label-input100">Mobile</span>
-						<input class="input100" type="text" name="mobile-phone" placeholder="Enter mobile phone number *">
+						<input class="input100" type="text" name="mobilePhone" placeholder="Enter mobile phone number *">
 						<span class="focus-input100"></span>
 					</div>
 
 					<div class="wrap-input100 m-b-18">
 						<span class="label-input100">Home</span>
-						<input class="input100" type="tel" name="home-phone" placeholder="Enter home phone number (optional)">
+						<input class="input100" type="tel" name="homePhone" placeholder="Enter home phone number (optional)">
 						<span class="focus-input100"></span>
 					</div>
 
 					<div class="wrap-input100 m-b-18">
 						<span class="label-input100">Work</span>
-						<input class="input100" type="tel" name="work-phone" placeholder="Enter work phone number (optional)">
+						<input class="input100" type="tel" name="workPhone" placeholder="Enter work phone number (optional)">
 						<span class="focus-input100"></span>
 					</div>
 
@@ -115,19 +115,19 @@
 					
 					<div class="wrap-input100 validate-input m-b-18" data-validate = "Car Name is required">
 						<span class="label-input100">Car Name</span>
-						<input class="input100" type="text" name="car1-name" placeholder="Enter name of Car 1 *">
+						<input class="input100" type="text" name="carName" placeholder="Enter name of Car 1 *">
 						<span class="focus-input100"></span>
 					</div>
 
 					<div class="wrap-input100 validate-input m-b-18" data-validate = "Plate Number is required">
 						<span class="label-input100">Plate Number</span>
-						<input class="input100" type="text" name="car1-platenumber" placeholder="Enter plate number of Car 1 *">
+						<input class="input100" type="text" name="carPlateNumber" placeholder="Enter plate number of Car 1 *">
 						<span class="focus-input100"></span>
 					</div>
 
 					<div class="wrap-input100 validate-input m-b-18" data-validate = "Car type is required">
 						<span class="label-input100">Car type</span>
-						<select id="car1-cartype" class="form-control input100" name="car1-cartype">
+						<select id="car1-cartype" class="form-control input100" name="carType">
 							<option selected>Choose a car type*</option>
 							<option>Hatchback</option>
 							<option>Sedan</option>
@@ -147,7 +147,7 @@
 					</div>
 					<div class="flex-sb-m w-full p-2">
 						<div>
-							<a href="login.html" class="txt1">
+							<a th:href="@{/login}" class="txt1">
 								Already signed up?
 							</a>
 						</div>

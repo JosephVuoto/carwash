@@ -13,8 +13,10 @@
         <result column="role" property="role" jdbcType="INTEGER" />
         <result column="enabled" property="enabled" jdbcType="BOOLEAN"/>
         <collection property="cars" ofType="Car">
-            <id column="cid" property="cid" jdbcType="INTEGER"/>
-            <result column="cname" property="cname" jdbcType="VARCHAR"/>
+            <id column="ucid" property="cid" jdbcType="INTEGER"/>
+            <result column="car_type" property="carType" jdbcType="VARCHAR"/>
+            <result column="car_name" property="carName" jdbcType="VARCHAR"/>
+            <result column="car_number" property="carNumber" jdbcType="VARCHAR"/>
         </collection>
     </resultMap>
 
@@ -41,11 +43,16 @@
 
     <select id="selectByEmail" resultMap="userDetailMap" parameterType="String">
         select * from user left join user_car on user.uid = user_car.uid
-        left join car on car.cid = user_car.cid where user.email = #{email}
+        left join car on car.cid = user_car.car_type where user.email = #{email}
     </select>
 
     <insert id="addUser" parameterType="User" useGeneratedKeys="true" keyProperty="uid">
         INSERT INTO user (`uid`, `email`, `password`, `name`, `address`, `phone_mobile`, `phone_home`, `phone_work`)
         VALUES (NULL, #{email}, #{password}, #{name}, #{address}, #{phoneMobile}, #{phoneHome}, #{phoneWork})
+    </insert>
+
+    <insert id="addUserCar" parameterType="UserCar">
+        INSERT INTO `user_car` (`ucid`, `uid`, `car_type`, `car_name`, `car_number`)
+        VALUES (NULL, #{uid}, #{carType}, #{carName}, #{carNumber})
     </insert>
 </mapper>

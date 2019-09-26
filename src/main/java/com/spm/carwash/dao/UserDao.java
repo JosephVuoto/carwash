@@ -1,6 +1,7 @@
 package com.spm.carwash.dao;
 
 import com.spm.carwash.pojo.User;
+import com.spm.carwash.pojo.UserCar;
 import com.spm.carwash.pojo.UserSimple;
 import org.apache.ibatis.annotations.Mapper;
 
@@ -18,6 +19,8 @@ public interface UserDao {
     User selectByID(Integer id);
 
     User selectByEmail(String email);
+
+    void addUserCar(UserCar userCar);
 
     void addUser(User user);
 }

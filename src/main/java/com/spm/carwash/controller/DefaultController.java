@@ -2,6 +2,7 @@ package com.spm.carwash.controller;
 
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.GetMapping;
+import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.ResponseBody;
 
@@ -32,6 +33,12 @@ public class DefaultController {
     @GetMapping("/signup")
     public String signUp() {
         return "/signup";
+    }
+
+    @PostMapping("/doSginup")
+    @ResponseBody
+    public String doSignup() {
+        return "Hello world";
     }
 
     @RequestMapping("/profile")

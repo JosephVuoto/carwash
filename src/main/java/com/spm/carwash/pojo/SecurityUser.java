@@ -1,5 +1,6 @@
 package com.spm.carwash.pojo;
 
+import com.google.gson.Gson;
 import org.springframework.security.core.GrantedAuthority;
 import org.springframework.security.core.authority.SimpleGrantedAuthority;
 import org.springframework.security.core.userdetails.UserDetails;
@@ -18,6 +19,7 @@ public class SecurityUser implements UserDetails {
 
     public SecurityUser(User user) {
         this.user = user;
+        System.out.println(new Gson().toJson(user));
         String role = user.getRole() == 0 ? "role_USER" : "role_ADMIN";
         authorities = Collections.singleton(new SimpleGrantedAuthority(role));
     }
