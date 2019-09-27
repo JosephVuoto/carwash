@@ -32,7 +32,7 @@ public class UserController {
 
     @PostMapping("/doSignup")
     public RedirectView doSignup(RegisterForm registerForm, RedirectAttributes redirectAttributes) {
-        if (userDetailsService.loadUserByUsername(registerForm.getEmail()) != null) {
+        if (userDetailsService.selectUser(registerForm.getEmail()) != null) {
             RedirectView redirectView = new RedirectView();
             redirectView.setContextRelative(true);
             redirectView.setUrl("/signup");

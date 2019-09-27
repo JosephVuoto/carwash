@@ -20,6 +20,8 @@ public interface UserDao {
 
     User selectByEmail(String email);
 
+    UserSimple selectInfoByEmail(String email);
+
     void addUserCar(UserCar userCar);
 
     void addUser(User user);

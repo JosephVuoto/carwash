@@ -5,6 +5,7 @@ import com.spm.carwash.dao.UserDao;
 import com.spm.carwash.pojo.SecurityUser;
 import com.spm.carwash.pojo.User;
 import com.spm.carwash.pojo.UserCar;
+import com.spm.carwash.pojo.UserSimple;
 import org.springframework.security.core.userdetails.UserDetails;
 import org.springframework.security.core.userdetails.UserDetailsService;
 import org.springframework.security.core.userdetails.UsernameNotFoundException;
@@ -29,6 +30,10 @@ public class UserDetailsServiceImpl implements UserDetailsService {
         User user = userDao.selectByEmail(s);
         System.out.println(new Gson().toJson(user));
         return new SecurityUser(user);
+    }
+
+    public UserSimple selectUser(String email) {
+        return userDao.selectInfoByEmail(email);
     }
 
     public void doRegister(User user) {

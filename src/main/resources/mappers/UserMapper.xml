@@ -10,7 +10,7 @@
         <result column="phone_mobile" property="phoneMobile" jdbcType="VARCHAR"/>
         <result column="phone_home" property="phoneHome" jdbcType="VARCHAR"/>
         <result column="phone_work" property="phoneWork" jdbcType="VARCHAR"/>
-        <result column="role" property="role" jdbcType="INTEGER" />
+        <result column="role" property="role" jdbcType="INTEGER"/>
         <result column="enabled" property="enabled" jdbcType="BOOLEAN"/>
         <collection property="cars" ofType="Car">
             <id column="ucid" property="cid" jdbcType="INTEGER"/>
@@ -28,12 +28,16 @@
         <result column="phone_mobile" property="phoneMobile" jdbcType="VARCHAR"/>
         <result column="phone_home" property="phoneHome" jdbcType="VARCHAR"/>
         <result column="phone_work" property="phoneWork" jdbcType="VARCHAR"/>
-        <result column="role" property="role" jdbcType="INTEGER" />
+        <result column="role" property="role" jdbcType="INTEGER"/>
         <result column="enabled" property="enabled" jdbcType="BOOLEAN"/>
     </resultMap>
 
     <select id="selectAllUsers" resultMap="userSimpleMap">
         select * from user
+    </select>
+
+    <select id="selectInfoByEmail" resultMap="userSimpleMap" parameterType="String">
+        select * from user where email = #{email}
     </select>
 
     <select id="selectByID" resultMap="userDetailMap" parameterType="Integer">
