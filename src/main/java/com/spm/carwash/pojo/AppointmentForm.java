@@ -1,5 +1,7 @@
 package com.spm.carwash.pojo;
 
+import com.spm.carwash.common.DateUtil;
+
 import java.text.ParsePosition;
 import java.text.SimpleDateFormat;
 import java.util.Date;
@@ -40,12 +42,8 @@ public class AppointmentForm {
                 break;
         }
 
-        SimpleDateFormat formatter = new SimpleDateFormat("dd/MM/yyyy");
-        ParsePosition pos = new ParsePosition(0);
-        appointment.setDate(formatter.parse(date, pos));
-
+        appointment.setDate(DateUtil.String2Date(date));
         appointment.setTime(new TimeSlot(time).getTsid());
-
         appointment.setComment(comment);
 
         return appointment;

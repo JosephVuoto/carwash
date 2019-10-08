@@ -1,11 +1,11 @@
 package com.spm.carwash.controller;
 
+import com.spm.carwash.pojo.TimeResponse;
+import com.spm.carwash.service.AppointmentService;
 import org.springframework.stereotype.Controller;
-import org.springframework.web.bind.annotation.GetMapping;
-import org.springframework.web.bind.annotation.PostMapping;
-import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.ResponseBody;
+import org.springframework.web.bind.annotation.*;
 
+import javax.annotation.Resource;
 import java.security.Principal;
 
 /**
@@ -14,6 +14,9 @@ import java.security.Principal;
  */
 @Controller
 public class DefaultController {
+
+    @Resource
+    AppointmentService appointmentService;
 
     @GetMapping("/test")
     public String test() {
@@ -50,5 +53,11 @@ public class DefaultController {
     @ResponseBody
     public Principal profile(Principal principal) {
         return principal;
+    }
+
+    @RequestMapping("/time/get")
+    @ResponseBody
+    public TimeResponse getTime(String date) {
+        return appointmentService.getTime(date);
     }
 }

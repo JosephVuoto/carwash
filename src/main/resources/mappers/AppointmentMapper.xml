@@ -38,4 +38,13 @@
         INSERT INTO `user_appointment` (`uaid`, `uid`, `aid`)
         VALUES (NULL, #{uid, jdbcType=INTEGER}, #{aid, jdbcType=INTEGER})
     </insert>
+
+    <select id="selectAllTakenTime" resultType="Integer" parameterType="String">
+        select time from appointment where
+        date = str_to_date( #{date},'%d/%m/%Y')
+    </select>
+
+    <select id="selectAllTime" resultType="String">
+        select slot from time_slot
+    </select>
 </mapper>
