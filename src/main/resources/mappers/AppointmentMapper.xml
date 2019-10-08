@@ -24,9 +24,21 @@
         </association>
     </resultMap>
 
+    <select id="selectAppointmentById" resultMap="appointmentMap" parameterType="Integer">
+        select * from appointment left join user_appointment on appointment.aid = user_appointment.aid
+        left join user on user_appointment.uid = user.uid join time_slot on time_slot.tsid = appointment.time
+        where appointment.aid = #{aid}
+    </select>
+
     <select id="selectAllAppointments" resultMap="appointmentMap">
         select * from appointment left join user_appointment on appointment.aid = user_appointment.aid
-        left join user on user_appointment.uid = user.uid
+        left join user on user_appointment.uid = user.uid join time_slot on time_slot.tsid = appointment.time
+    </select>
+
+    <select id="selectAppointmentByUser" resultMap="appointmentMap" parameterType="Integer">
+        select * from appointment left join user_appointment on appointment.aid = user_appointment.aid
+        left join user on user_appointment.uid = user.uid join time_slot on time_slot.tsid = appointment.time
+        where user.uid = #{uid}
     </select>
 
     <insert id="addAppointment" parameterType="NewAppointment"  useGeneratedKeys="true" keyProperty="aid">
@@ -47,4 +59,8 @@
     <select id="selectAllTime" resultType="String">
         select slot from time_slot
     </select>
+
+    <delete id="deleteAppointment" parameterType="Integer">
+        delete from appointment where aid = #{aid}
+    </delete>
 </mapper>

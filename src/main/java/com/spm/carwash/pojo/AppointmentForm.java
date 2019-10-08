@@ -2,10 +2,6 @@ package com.spm.carwash.pojo;
 
 import com.spm.carwash.common.DateUtil;
 
-import java.text.ParsePosition;
-import java.text.SimpleDateFormat;
-import java.util.Date;
-
 /**
  * @author Yangzhe Xie
  * @date 8/10/19

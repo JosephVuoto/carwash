@@ -1,22 +1,18 @@
 package com.spm.carwash.controller;
 
-import com.google.gson.Gson;
 import com.spm.carwash.common.StringUtil;
-import com.spm.carwash.pojo.*;
+import com.spm.carwash.pojo.RegisterForm;
+import com.spm.carwash.pojo.User;
+import com.spm.carwash.pojo.UserCar;
 import com.spm.carwash.service.AppointmentService;
 import com.spm.carwash.service.UserDetailsServiceImpl;
 import org.springframework.stereotype.Controller;
-import org.springframework.ui.Model;
-import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.ResponseBody;
-import org.springframework.web.servlet.ModelAndView;
 import org.springframework.web.servlet.mvc.support.RedirectAttributes;
 import org.springframework.web.servlet.view.RedirectView;
 
 import javax.annotation.Resource;
-import java.security.Principal;
 
 /**
  * @author Yangzhe Xie

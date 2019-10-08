@@ -1,16 +1,12 @@
 package com.spm.carwash.service;
 
-import com.google.gson.Gson;
 import com.spm.carwash.common.DateUtil;
 import com.spm.carwash.dao.AppointmentDao;
-import com.spm.carwash.pojo.Appointment;
-import com.spm.carwash.pojo.NewAppointment;
-import com.spm.carwash.pojo.TimeResponse;
+import com.spm.carwash.pojo.*;
 import org.springframework.stereotype.Service;
 
 import javax.annotation.Resource;
 import java.util.ArrayList;
-import java.util.Date;
 import java.util.List;
 
 /**
@@ -46,5 +42,31 @@ public class AppointmentService {
         timeResponse.setAvailableTime(avail);
         timeResponse.setDate(dateStr);
         return timeResponse;
+    }
+
+    public List<SimpleAppointment> getAllAppointments() {
+        List<Appointment> aps = appointmentDao.selectAllAppointments();
+        List<SimpleAppointment> result = new ArrayList<>();
+        for (Appointment appointment : aps) {
+            result.add(new SimpleAppointment(appointment));
+        }
+        return result;
+    }
+
+    public List<SimpleAppointment> getUserAppointments(Integer uid) {
+        List<Appointment> aps = appointmentDao.selectAppointmentByUser(uid);
+        List<SimpleAppointment> result = new ArrayList<>();
+        for (Appointment appointment : aps) {
+            result.add(new SimpleAppointment(appointment));
+        }
+        return result;
+    }
+
+    public void deleteAppointment(Integer aid) {
+        appointmentDao.deleteAppointment(aid);
+    }
+
+    public AppointmentDetail getAppointDetail(Integer aid) {
+        return new AppointmentDetail(appointmentDao.selectAppointmentById(aid));
     }
 }

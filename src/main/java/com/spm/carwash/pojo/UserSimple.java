@@ -3,8 +3,6 @@ package com.spm.carwash.pojo;
 import com.fasterxml.jackson.annotation.JsonIgnore;
 import com.google.gson.Gson;
 
-import java.util.List;
-
 /**
  * table name:  user
  * author name: joseph

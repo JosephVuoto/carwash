@@ -1,6 +1,5 @@
 package com.spm.carwash.dao;
 
-import com.spm.carwash.pojo.Car;
 import com.spm.carwash.pojo.User;
 import com.spm.carwash.pojo.UserCar;
 import com.spm.carwash.pojo.UserSimple;

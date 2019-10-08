@@ -1,7 +1,5 @@
 package com.spm.carwash.pojo;
 
-import net.sf.jsqlparser.statement.select.First;
-
 import java.util.Collections;
 
 /**

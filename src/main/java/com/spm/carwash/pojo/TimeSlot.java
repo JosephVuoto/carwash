@@ -10,20 +10,7 @@ public class TimeSlot {
     private int tsid;
     private String slot;
 
-    public int getTsid() {
-        return tsid;
-    }
-
-    public void setTsid(int tsid) {
-        this.tsid = tsid;
-    }
-
-    public String getSlot() {
-        return slot;
-    }
-
-    public void setSlot(String slot) {
-        this.slot = slot;
+    public TimeSlot() {
     }
 
     public TimeSlot(String slot) {
@@ -66,6 +53,22 @@ public class TimeSlot {
                 this.tsid = 12;
                 break;
         }
+    }
+
+    public int getTsid() {
+        return tsid;
+    }
+
+    public void setTsid(int tsid) {
+        this.tsid = tsid;
+    }
+
+    public String getSlot() {
+        return slot;
+    }
+
+    public void setSlot(String slot) {
+        this.slot = slot;
     }
 }
 

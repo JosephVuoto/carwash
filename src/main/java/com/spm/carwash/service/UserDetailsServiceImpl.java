@@ -45,6 +45,7 @@ public class UserDetailsServiceImpl implements UserDetailsService {
 
     /**
      * get the username of the current user of the request
+     *
      * @return username
      */
     public SecurityUser getCurrentUserName() {
@@ -53,6 +54,7 @@ public class UserDetailsServiceImpl implements UserDetailsService {
 
     /**
      * get the information of the current user of the request
+     *
      * @return User object
      */
     public User getCurrentUser() {

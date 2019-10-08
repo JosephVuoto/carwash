@@ -5,7 +5,6 @@ import com.spm.carwash.pojo.NewAppointment;
 import org.apache.ibatis.annotations.Mapper;
 import org.apache.ibatis.annotations.Param;
 
-import java.util.Date;
 import java.util.List;
 
 /**
@@ -21,7 +20,13 @@ public interface AppointmentDao {
 
     List<Appointment> selectAllAppointments();
 
+    List<Appointment> selectAppointmentByUser(Integer uid);
+
     List<Integer> selectAllTakenTime(String date);
 
     List<String> selectAllTime();
+
+    void deleteAppointment(Integer aid);
+
+    Appointment selectAppointmentById(Integer aid);
 }

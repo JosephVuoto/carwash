@@ -36,9 +36,8 @@ public class CarwashApplicationTests {
 
     @Test
     public void test() {
-        String json = "{\"uid\":14,\"email\":null,\"password\":null,\"firstname\":\"Yang\",\"lastname\":\"Xie\",\"address\":\"570 Swanson St, Apartment 507\",\"phoneMobile\":\"0435233353\",\"phoneHome\":\"\",\"phoneWork\":\"\",\"role\":0,\"enabled\":null,\"cars\":[{\"cid\":0,\"carName\":\"123\",\"carNumber\":\"123\",\"carType\":\"Sedan\"}]}";
-        User user = new Gson().fromJson(json, User.class);
-        userDao.updateUserInfo(user);
+//        appointmentService.deleteAppointment(9);
+        System.out.println(new Gson().toJson(appointmentService.getAppointDetail(11)));
     }
 
 }

@@ -11,11 +11,16 @@ import java.util.List;
  * @date 8/10/19
  */
 public class DateUtil {
+    public static List<String> times = new ArrayList<>();
+
     public static Date String2Date(String str) {
         SimpleDateFormat formatter = new SimpleDateFormat("dd/MM/yyyy");
         ParsePosition pos = new ParsePosition(0);
         return formatter.parse(str, pos);
     }
 
-    public static List<String> times = new ArrayList<>();
+    public static String Date2String(Date date) {
+        SimpleDateFormat formatter = new SimpleDateFormat("dd/MM/yyyy");
+        return formatter.format(date);
+    }
 }
