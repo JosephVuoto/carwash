@@ -2,6 +2,8 @@ package com.spm.carwash.pojo;
 
 import net.sf.jsqlparser.statement.select.First;
 
+import java.util.Collections;
+
 /**
  * @author Yangzhe Xie
  * @date 26/9/19
@@ -24,11 +26,17 @@ public class RegisterForm {
         User user = new User();
         user.setEmail(email);
         user.setPassword(password);
-        user.setName(firstName + " " + lastName);
+        user.setFirstname(firstName);
+        user.setLastname(lastName);
         user.setAddress(address);
         user.setPhoneMobile(mobilePhone);
         user.setPhoneHome(homePhone);
         user.setPhoneWork(workPhone);
+        Car car = new Car();
+        car.setCarName(carName);
+        car.setCarNumber(carPlateNumber);
+        car.setCarType(carType);
+        user.setCars(Collections.singletonList(car));
         return user;
     }
 

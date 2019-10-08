@@ -5,7 +5,8 @@
         <id column="uid" property="uid" jdbcType="INTEGER"/>
         <result column="email" property="email" jdbcType="VARCHAR"/>
         <result column="password" property="password" jdbcType="VARCHAR"/>
-        <result column="name" property="name" jdbcType="VARCHAR"/>
+        <result column="firstname" property="firstname" jdbcType="VARCHAR"/>
+        <result column="lastname" property="lastname" jdbcType="VARCHAR"/>
         <result column="address" property="address" jdbcType="VARCHAR"/>
         <result column="phone_mobile" property="phoneMobile" jdbcType="VARCHAR"/>
         <result column="phone_home" property="phoneHome" jdbcType="VARCHAR"/>
@@ -14,7 +15,7 @@
         <result column="enabled" property="enabled" jdbcType="BOOLEAN"/>
         <collection property="cars" ofType="Car">
             <id column="ucid" property="cid" jdbcType="INTEGER"/>
-            <result column="car_type" property="carType" jdbcType="VARCHAR"/>
+            <result column="cname" property="carType" jdbcType="VARCHAR"/>
             <result column="car_name" property="carName" jdbcType="VARCHAR"/>
             <result column="car_number" property="carNumber" jdbcType="VARCHAR"/>
         </collection>
@@ -23,7 +24,8 @@
     <resultMap id="userSimpleMap" type="User">
         <id column="uid" property="uid" jdbcType="INTEGER"/>
         <result column="email" property="email" jdbcType="VARCHAR"/>
-        <result column="name" property="name" jdbcType="VARCHAR"/>
+        <result column="firstname" property="firstname" jdbcType="VARCHAR"/>
+        <result column="lastname" property="lastname" jdbcType="VARCHAR"/>
         <result column="address" property="address" jdbcType="VARCHAR"/>
         <result column="phone_mobile" property="phoneMobile" jdbcType="VARCHAR"/>
         <result column="phone_home" property="phoneHome" jdbcType="VARCHAR"/>
@@ -42,21 +44,41 @@
 
     <select id="selectByID" resultMap="userDetailMap" parameterType="Integer">
         select * from user left join user_car on user.uid = user_car.uid
-        left join car on car.cid = user_car.cid where user.uid = #{uid}
+        left join car on car.cid = user_car.car_type where user.uid = #{uid}
     </select>
 
     <select id="selectByEmail" resultMap="userDetailMap" parameterType="String">
         select * from user left join user_car on user.uid = user_car.uid
-        left join car on car.cid = user_car.car_type where user.email = #{email}
+        left join car on car.cid = user_car.car_type
+        where user.email = #{email}
     </select>
 
     <insert id="addUser" parameterType="User" useGeneratedKeys="true" keyProperty="uid">
-        INSERT INTO user (`uid`, `email`, `password`, `name`, `address`, `phone_mobile`, `phone_home`, `phone_work`)
-        VALUES (NULL, #{email}, #{password}, #{name}, #{address}, #{phoneMobile}, #{phoneHome}, #{phoneWork})
+        INSERT INTO user (`uid`, `email`, `password`, `firstname`, `lastname`, `address`, `phone_mobile`, `phone_home`, `phone_work`)
+        VALUES (NULL, #{email}, #{password}, #{fisrtname}, #{lastname}, #{address}, #{phoneMobile}, #{phoneHome}, #{phoneWork})
     </insert>
 
     <insert id="addUserCar" parameterType="UserCar">
         INSERT INTO `user_car` (`ucid`, `uid`, `car_type`, `car_name`, `car_number`)
         VALUES (NULL, #{uid}, #{carType}, #{carName}, #{carNumber})
     </insert>
+
+    <update id="updateUserInfo" parameterType="User">
+        update user set
+        firstname = #{firstname},
+        lastname = #{lastname},
+        address = #{address},
+        phone_mobile = #{phoneMobile},
+        phone_home = #{phoneHome},
+        phone_work = #{phoneWork}
+        where uid = #{uid}
+    </update>
+
+    <update id="updateUserCar" parameterType="UserCar">
+        update user_car set
+        car_type = #{carType},
+        car_name = #{carName},
+        car_number = #{carNumber}
+        where uid = #{uid}
+    </update>
 </mapper>

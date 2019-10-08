@@ -2,10 +2,7 @@ package com.spm.carwash.service;
 
 import com.google.gson.Gson;
 import com.spm.carwash.dao.UserDao;
-import com.spm.carwash.pojo.SecurityUser;
-import com.spm.carwash.pojo.User;
-import com.spm.carwash.pojo.UserCar;
-import com.spm.carwash.pojo.UserSimple;
+import com.spm.carwash.pojo.*;
 import org.springframework.security.core.context.SecurityContextHolder;
 import org.springframework.security.core.userdetails.UserDetails;
 import org.springframework.security.core.userdetails.UserDetailsService;
@@ -59,6 +56,16 @@ public class UserDetailsServiceImpl implements UserDetailsService {
      * @return User object
      */
     public User getCurrentUser() {
-        return getCurrentUserName().getUser();
+        return userDao.selectByID(getCurrentUserName().getUser().getUid());
+    }
+
+    public void updateUserInfo(RegisterForm registerForm) {
+        User user = registerForm.getUser();
+        int uid = getCurrentUser().getUid();
+        user.setUid(uid);
+        userDao.updateUserInfo(user);
+        UserCar userCar = registerForm.getUserCar();
+        userCar.setUid(uid);
+        userDao.updateUserCar(userCar);
     }
 }

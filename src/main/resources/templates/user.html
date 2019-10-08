@@ -1,25 +1,150 @@
 <!DOCTYPE html>
-<html xmlns="http://www.w3.org/1999/xhtml"
-      xmlns:th="http://www.thymeleaf.org"
-      xmlns:sec="http://www.thymeleaf.org/thymeleaf-extras-springsecurity4">
-<html lang="en">
+<html lang="en" xmlns="http://www.w3.org/1999/xhtml" xmlns:th="http://www.thymeleaf.org">
 <head>
-    <meta charset="UTF-8">
-    <title>Title</title>
+	<title>User Information</title>
+	
+	<meta charset="UTF-8">
+	<meta name="viewport" content="width=device-width, initial-scale=1">
+	<link rel="icon" type="image/png" href="images/icons/favicon.ico"/>
+	<link rel="stylesheet" type="text/css" href="vendor/bootstrap/css/bootstrap.min.css">
+	<link rel="stylesheet" type="text/css" href="fonts/font-awesome-4.7.0/css/font-awesome.min.css">
+	<link rel="stylesheet" type="text/css" href="fonts/Linearicons-Free-v1.0.0/icon-font.min.css">
+	<link rel="stylesheet" type="text/css" href="vendor/animate/animate.css">
+	<link rel="stylesheet" type="text/css" href="vendor/css-hamburgers/hamburgers.min.css">
+	<link rel="stylesheet" type="text/css" href="vendor/animsition/css/animsition.min.css">
+	<link rel="stylesheet" type="text/css" href="vendor/select2/select2.min.css">
+	<link rel="stylesheet" type="text/css" href="vendor/daterangepicker/daterangepicker.css">
+	<link rel="stylesheet" type="text/css" href="css/util.css">
+	<link rel="stylesheet" type="text/css" href="css/main.css">
 </head>
 <body>
+	
+	<div class="limiter">
+		<div class="container-login100">
+			<div class="wrap-login100">
+				<div class="login100-form-title" style="background-image: url(images/banner.jpg);">
+					<span class="login100-form-title-1">
+						User Information
+					</span>
+					<span class="login100-form-title-2">
+						Gabriel & David Car Wash
+					</span>
+				</div>
+				<!--alert is here-->
+				<div class="container p-3">
+					<div class="row justify-content-md-center">
+						<div th:if="${alertStatus}" class="col col-lg-10">
+							<div class="alert alert-danger", th:text="${alert}">
 
-<div>
+							</div>
+						</div>
+					</div>
+				</div>
+				
 
-    <div sec:authorize="isAuthenticated()">
-        <p>Logged in</p>
-        <p>User: <span sec:authentication="name"></span></p>
-        <p>Role: <span sec:authentication="principal.authorities"></span></p>
-    </div>
-    <div sec:authorize="isAnonymous()">
-        <p>Tourist</p>
-    </div>
-</div>
+				<form th:action="@{/updateInfo}" method="post" class="login100-form validate-form">
+
+					<div class="validate-input m-b-18">
+						<span>Basic Info</span>
+					</div>
+
+					<div class="wrap-input100 validate-input m-b-26" data-validate="Email is required">
+						<span class="label-input100">Email</span>
+						<input class="input100" type="text" name="email" th:attr="value=${user.email}" disabled>
+						<span class="focus-input100"></span>
+					</div>
+
+					<div class="wrap-input100 validate-input m-b-18" data-validate = "First name is required">
+						<span class="label-input100">First Name</span>
+						<input class="input100" type="text" name="firstName" placeholder="Enter first name *" th:attr="value=${user.firstname}">
+						<span class="focus-input100"></span>
+					</div>
+
+					<div class="wrap-input100 validate-input m-b-18" data-validate = "Last name is required">
+						<span class="label-input100">Last Name</span>
+						<input class="input100" type="text" name="lastName" placeholder="Enter last name *" th:attr="value=${user.lastname}">
+						<span class="focus-input100"></span>
+					</div>
+
+					<div class="wrap-input100 validate-input m-b-18" data-validate = "Home address is required">
+						<span class="label-input100">Home Address</span>
+						<input class="input100" type="text" name="address" placeholder="Enter address *" th:attr="value=${user.address}">
+						<span class="focus-input100"></span>
+					</div>
+
+					<div class="validate-input m-b-18">
+						<span>Phone Numbers</span>
+					</div>
+
+					<div class="wrap-input100 validate-input m-b-18" data-validate = "Mobile phone is required">
+						<span class="label-input100">Mobile</span>
+						<input class="input100" type="text" name="mobilePhone" placeholder="Enter mobile phone number *" th:attr="value=${user.phoneMobile}">
+						<span class="focus-input100"></span>
+					</div>
+
+					<div class="wrap-input100 m-b-18">
+						<span class="label-input100">Home</span>
+						<input class="input100" type="tel" name="homePhone" placeholder="Enter home phone number (optional)" th:attr="value=${user.phoneHome}">
+						<span class="focus-input100"></span>
+					</div>
+
+					<div class="wrap-input100 m-b-18">
+						<span class="label-input100">Work</span>
+						<input class="input100" type="tel" name="workPhone" placeholder="Enter work phone number (optional)" th:attr="value=${user.phoneWork}">
+						<span class="focus-input100"></span>
+					</div>
+
+					<div class="validate-input m-b-18">
+						<span>Car Info</span>
+					</div>
+					
+					<div class="wrap-input100 validate-input m-b-18" data-validate = "Car Name is required">
+						<span class="label-input100">Car Name</span>
+						<input class="input100" type="text" name="carName" placeholder="Enter name of Car 1 *" th:attr="value=${car.carName}">
+						<span class="focus-input100"></span>
+					</div>
+
+					<div class="wrap-input100 validate-input m-b-18" data-validate = "Plate Number is required">
+						<span class="label-input100">Plate Number</span>
+						<input class="input100" type="text" name="carPlateNumber" placeholder="Enter plate number of Car 1 *" th:attr="value=${car.carNumber}">
+						<span class="focus-input100"></span>
+					</div>
+
+					<div class="wrap-input100 validate-input m-b-18" data-validate = "Car type is required">
+						<span class="label-input100">Car type</span>
+						<select id="car1-cartype" class="form-control input100" name="carType" >
+							<option selected th:text="${car.carType}"></option>
+							<option>Hatchback</option>
+							<option>Sedan</option>
+							<option>SUV</option>
+						</select>
+						<span class="focus-input100"></span>
+					</div>
+
+					<div class="validate-input m-b-18">
+						<small>* is required</small>
+					</div>
+
+					<div class="container-login100-form-btn">
+						<button class="login100-form-btn">
+							Submit
+						</button>
+					</div>
+				</form>
+			</div>
+		</div>
+	</div>
+
+	
+	<script src="vendor/jquery/jquery-3.2.1.min.js"></script>
+	<script src="vendor/animsition/js/animsition.min.js"></script>
+	<script src="vendor/bootstrap/js/popper.js"></script>
+	<script src="vendor/bootstrap/js/bootstrap.min.js"></script>
+	<script src="vendor/select2/select2.min.js"></script>
+	<script src="vendor/daterangepicker/moment.min.js"></script>
+	<script src="vendor/daterangepicker/daterangepicker.js"></script>
+	<script src="vendor/countdowntime/countdowntime.js"></script>
+	<script src="js/main.js"></script>
 
 </body>
 </html>
