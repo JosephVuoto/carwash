@@ -70,32 +70,4 @@ public class UserController {
             return redirectView;
         }
     }
-
-    @PostMapping("doSubmit")
-    public RedirectView doSubmit(AppointmentForm appointmentForm, RedirectAttributes redirectAttributes) {
-        RedirectView redirectView = new RedirectView();
-        redirectView.setContextRelative(true);
-        redirectView.setUrl("/submit");
-        if (appointmentForm.getCarType().equalsIgnoreCase("Choose a car type*")) {
-            redirectAttributes.addFlashAttribute("alertStatus", true);
-            redirectAttributes.addFlashAttribute("alert", "Please choose a car type");
-        } else if (appointmentForm.getCarOption().equalsIgnoreCase("Choose a car wash option*")) {
-            redirectAttributes.addFlashAttribute("alertStatus", true);
-            redirectAttributes.addFlashAttribute("alert", "Please choose a car wash option");
-        } else if (appointmentForm.getTime().equalsIgnoreCase("Choose a time slot*")) {
-            redirectAttributes.addFlashAttribute("alertStatus", true);
-            redirectAttributes.addFlashAttribute("alert", "Please choose a time slot");
-        } else {
-            try {
-                NewAppointment appointment = appointmentForm.getAppointment();
-                appointmentService.addAppointment(appointment);
-                //TODO redirect to home page
-            } catch (Exception e) {
-                e.printStackTrace();
-                redirectAttributes.addFlashAttribute("alertStatus", true);
-                redirectAttributes.addFlashAttribute("alert", "Unknown error. Please try again.");
-            }
-        }
-        return redirectView;
-    }
 }

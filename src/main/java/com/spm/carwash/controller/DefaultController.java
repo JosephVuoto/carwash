@@ -42,22 +42,4 @@ public class DefaultController {
     public String submit() {
         return"/submit";
     }
-
-    @PostMapping("/doSignnup")
-    @ResponseBody
-    public String doSignup() {
-        return "Hello world";
-    }
-
-    @RequestMapping("/profile")
-    @ResponseBody
-    public Principal profile(Principal principal) {
-        return principal;
-    }
-
-    @RequestMapping("/time/get")
-    @ResponseBody
-    public TimeResponse getTime(String date) {
-        return appointmentService.getTime(date);
-    }
 }
