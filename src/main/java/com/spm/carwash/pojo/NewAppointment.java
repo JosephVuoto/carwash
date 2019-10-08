@@ -10,7 +10,6 @@ public class NewAppointment {
     private int time;
     private int option;
     private String comment;
-    private int user;
 
     public Date getDate() {
         return date;
@@ -58,14 +57,6 @@ public class NewAppointment {
 
     public void setComment(String comment) {
         this.comment = comment;
-    }
-
-    public int getUser() {
-        return user;
-    }
-
-    public void setUser(int user) {
-        this.user = user;
     }
 }
 

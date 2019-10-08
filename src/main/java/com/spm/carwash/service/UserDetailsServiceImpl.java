@@ -6,6 +6,7 @@ import com.spm.carwash.pojo.SecurityUser;
 import com.spm.carwash.pojo.User;
 import com.spm.carwash.pojo.UserCar;
 import com.spm.carwash.pojo.UserSimple;
+import org.springframework.security.core.context.SecurityContextHolder;
 import org.springframework.security.core.userdetails.UserDetails;
 import org.springframework.security.core.userdetails.UserDetailsService;
 import org.springframework.security.core.userdetails.UsernameNotFoundException;
@@ -43,5 +44,21 @@ public class UserDetailsServiceImpl implements UserDetailsService {
 
     public void addUserCar(UserCar userCar) {
         userDao.addUserCar(userCar);
+    }
+
+    /**
+     * get the username of the current user of the request
+     * @return username
+     */
+    public SecurityUser getCurrentUserName() {
+        return (SecurityUser) SecurityContextHolder.getContext().getAuthentication().getPrincipal();
+    }
+
+    /**
+     * get the information of the current user of the request
+     * @return User object
+     */
+    public User getCurrentUser() {
+        return getCurrentUserName().getUser();
     }
 }

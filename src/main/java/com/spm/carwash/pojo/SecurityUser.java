@@ -24,6 +24,10 @@ public class SecurityUser implements UserDetails {
         authorities = Collections.singleton(new SimpleGrantedAuthority(role));
     }
 
+    public User getUser() {
+        return user;
+    }
+
     @Override
     public Collection<? extends GrantedAuthority> getAuthorities() {
         return authorities;

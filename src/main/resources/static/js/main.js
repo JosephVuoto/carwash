@@ -73,6 +73,18 @@
 
         $(thisAlert).removeClass('alert-validate');
     }
+
+    $(function() {
+        $('input[name="date"]').daterangepicker({
+            singleDatePicker: true,
+            showDropdowns: true,
+            minDate: moment(),
+            maxYear: parseInt(moment().format('YYYY'),10),
+            locale: {
+                format: 'DD/MM/YYYY'
+            }
+        });
+    })
     
 
 })(jQuery);

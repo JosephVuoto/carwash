@@ -35,6 +35,11 @@ public class DefaultController {
         return "/signup";
     }
 
+    @GetMapping("/submit")
+    public String submit() {
+        return"/submit";
+    }
+
     @PostMapping("/doSignnup")
     @ResponseBody
     public String doSignup() {

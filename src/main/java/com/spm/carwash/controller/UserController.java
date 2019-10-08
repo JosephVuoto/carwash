@@ -2,9 +2,8 @@ package com.spm.carwash.controller;
 
 import com.google.gson.Gson;
 import com.spm.carwash.common.StringUtil;
-import com.spm.carwash.pojo.RegisterForm;
-import com.spm.carwash.pojo.User;
-import com.spm.carwash.pojo.UserCar;
+import com.spm.carwash.pojo.*;
+import com.spm.carwash.service.AppointmentService;
 import com.spm.carwash.service.UserDetailsServiceImpl;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
@@ -29,6 +28,8 @@ public class UserController {
 
     @Resource
     UserDetailsServiceImpl userDetailsService;
+    @Resource
+    AppointmentService appointmentService;
 
     @PostMapping("/doSignup")
     public RedirectView doSignup(RegisterForm registerForm, RedirectAttributes redirectAttributes) {
@@ -68,5 +69,33 @@ public class UserController {
             redirectAttributes.addFlashAttribute("alert", "Unknown error. Please try again.");
             return redirectView;
         }
+    }
+
+    @PostMapping("doSubmit")
+    public RedirectView doSubmit(AppointmentForm appointmentForm, RedirectAttributes redirectAttributes) {
+        RedirectView redirectView = new RedirectView();
+        redirectView.setContextRelative(true);
+        redirectView.setUrl("/submit");
+        if (appointmentForm.getCarType().equalsIgnoreCase("Choose a car type*")) {
+            redirectAttributes.addFlashAttribute("alertStatus", true);
+            redirectAttributes.addFlashAttribute("alert", "Please choose a car type");
+        } else if (appointmentForm.getCarOption().equalsIgnoreCase("Choose a car wash option*")) {
+            redirectAttributes.addFlashAttribute("alertStatus", true);
+            redirectAttributes.addFlashAttribute("alert", "Please choose a car wash option");
+        } else if (appointmentForm.getTime().equalsIgnoreCase("Choose a time slot*")) {
+            redirectAttributes.addFlashAttribute("alertStatus", true);
+            redirectAttributes.addFlashAttribute("alert", "Please choose a time slot");
+        } else {
+            try {
+                NewAppointment appointment = appointmentForm.getAppointment();
+                appointmentService.addAppointment(appointment);
+                //TODO redirect to home page
+            } catch (Exception e) {
+                e.printStackTrace();
+                redirectAttributes.addFlashAttribute("alertStatus", true);
+                redirectAttributes.addFlashAttribute("alert", "Unknown error. Please try again.");
+            }
+        }
+        return redirectView;
     }
 }
