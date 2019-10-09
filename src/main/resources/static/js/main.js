@@ -9,7 +9,7 @@
             else {
                 $(this).removeClass('has-val');
             }
-        })    
+        })
     })
 
     var input = $('.validate-input .input100');
@@ -30,10 +30,58 @@
 
     $('.validate-form .input100').each(function(){
         $(this).focus(function(){
-           hideValidate(this);
+            hideValidate(this);
         });
     });
-    
+
+    $("#chooseDate").change(function(){
+        var date = $('#chooseDate').val();
+        var time = (new Date(date)).getTime()
+        $.ajax({
+            url:"/time/get",
+            method:"POST",
+            data:{time},
+            dataType: 'text',
+            success:function(result){
+                if (result) {
+                    $('#time-option').html('')
+                    var slot = $.parseJSON(result);
+                    if(slot.availableTime.length > 0){
+                        $.each(slot.availableTime, function(i, time) {
+                            $('#time-option').append($('<option>', {
+                                text: time
+                            }));
+                        });
+                    }
+                    else{
+                        $('#time-option').append($('<option>', {
+                            text: 'No available timeslot!'
+                        }));
+                    }
+                }
+                else{
+                    console.log('result');
+                    $('#time-option').append($('<option>', {
+                        text: 'ERROR, please try again'
+                    }));
+                }
+            }
+        });
+    });
+
+    // $(function() {
+    //     $('input[name="date"]').daterangepicker({
+    //         singleDatePicker: true,
+    //         showDropdowns: true,
+    //         minDate: moment(),
+    //         maxYear: parseInt(moment().format('YYYY'),10),
+    //         locale: {
+    //             format: 'DD/MM/YYYY'
+    //         }
+    //     });
+    // })
+
+
     function validate (input) {
         if($(input).attr('type') == 'email' || $(input).attr('name') == 'email') {
             if($(input).val().trim().match(/^(([^<>()\[\]\\.,;:\s@"]+(\.[^<>()\[\]\\.,;:\s@"]+)*)|(".+"))@((\[[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\])|(([a-zA-Z\-0-9]+\.)+[a-zA-Z]{2,}))$/) == null) {
@@ -52,6 +100,21 @@
         }
         else if($(input).attr('name') == 'car1-cartype' ) {
             if($(input).val() == "Choose a car type*") {
+                return false;
+            }
+        }
+        else if($(input).attr('name') == 'carType' ) {
+            if($(input).val() == "Choose a car type*") {
+                return false;
+            }
+        }
+        else if($(input).attr('name') == 'carOption' ) {
+            if($(input).val() == "Choose a car wash option*") {
+                return false;
+            }
+        }
+        else if($(input).attr('name') == 'time' ) {
+            if($(input).val() == "Choose a time slot*") {
                 return false;
             }
         }
@@ -74,17 +137,5 @@
         $(thisAlert).removeClass('alert-validate');
     }
 
-    $(function() {
-        $('input[name="date"]').daterangepicker({
-            singleDatePicker: true,
-            showDropdowns: true,
-            minDate: moment(),
-            maxYear: parseInt(moment().format('YYYY'),10),
-            locale: {
-                format: 'DD/MM/YYYY'
-            }
-        });
-    })
-    
 
 })(jQuery);

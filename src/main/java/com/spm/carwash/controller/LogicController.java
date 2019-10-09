@@ -1,9 +1,6 @@
 package com.spm.carwash.controller;
 
-import com.spm.carwash.pojo.AppointmentForm;
-import com.spm.carwash.pojo.NewAppointment;
-import com.spm.carwash.pojo.RegisterForm;
-import com.spm.carwash.pojo.TimeResponse;
+import com.spm.carwash.pojo.*;
 import com.spm.carwash.service.AppointmentService;
 import com.spm.carwash.service.UserDetailsServiceImpl;
 import org.springframework.stereotype.Controller;
@@ -12,6 +9,8 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.ResponseBody;
 import org.springframework.web.servlet.mvc.support.RedirectAttributes;
 import org.springframework.web.servlet.view.RedirectView;
+import org.thymeleaf.templateresolver.ITemplateResolver;
+import org.thymeleaf.templateresolver.ServletContextTemplateResolver;
 
 import javax.annotation.Resource;
 import java.security.Principal;
@@ -54,7 +53,6 @@ public class LogicController {
         }
         return redirectView;
     }
-
     @PostMapping("/updateInfo")
     public RedirectView updateInfo(RegisterForm registerForm, RedirectAttributes redirectAttributes) {
         RedirectView redirectView = new RedirectView();
@@ -85,7 +83,7 @@ public class LogicController {
 
     @RequestMapping("/time/get")
     @ResponseBody
-    public TimeResponse getTime(String date) {
-        return appointmentService.getTime(date);
+    public TimeResponse getTime(String time) {
+        return appointmentService.getTime(time);
     }
 }
