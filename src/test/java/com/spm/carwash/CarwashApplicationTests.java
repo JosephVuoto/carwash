@@ -8,6 +8,7 @@ import com.spm.carwash.pojo.NewAppointment;
 import com.spm.carwash.pojo.User;
 import com.spm.carwash.pojo.UserCar;
 import com.spm.carwash.service.AppointmentService;
+import com.spm.carwash.service.NotificationService;
 import com.spm.carwash.service.UserDetailsServiceImpl;
 import org.junit.Test;
 import org.junit.runner.RunWith;
@@ -29,6 +30,8 @@ public class CarwashApplicationTests {
     AppointmentDao appointmentDao;
     @Resource
     AppointmentService appointmentService;
+    @Resource
+    NotificationService notificationService;
 
     @Test
     public void contextLoads() {
@@ -37,7 +40,8 @@ public class CarwashApplicationTests {
     @Test
     public void test() {
 //        appointmentService.deleteAppointment(9);
-        System.out.println(new Gson().toJson(appointmentService.getAppointDetail(10)));
+//        System.out.println(new Gson().toJson(appointmentService.getAppointDetail(10)));
+        notificationService.sendSimpleMail("joseph.vuoto@gmail.com", "hello", "world");
     }
 
 }
