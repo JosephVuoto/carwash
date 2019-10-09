@@ -119,10 +119,5 @@ public class User {
     public void setEnabled(Integer enabled) {
         this.enabled = enabled;
     }
-
-    @Override
-    public String toString() {
-        return new Gson().toJson(this);
-    }
 }
 

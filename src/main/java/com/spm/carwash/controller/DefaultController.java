@@ -23,9 +23,17 @@ public class DefaultController {
     @Resource
     AppointmentService appointmentService;
 
-    @GetMapping("/test")
-    public String test() {
-        return "/test";
+    @GetMapping("/")
+    public String test(Model model) {
+        User user = userDetailsService.getCurrentUser();
+        if (user.getRole() == 0) {
+            model.addAttribute("title", "Your appointments");
+            model.addAttribute("user", true);
+        } else {
+            model.addAttribute("title", "All appointments");
+            model.addAttribute("user", false);
+        }
+        return "/list";
     }
 
     @GetMapping("/login")
