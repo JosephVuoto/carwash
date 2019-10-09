@@ -7,6 +7,7 @@ import com.spm.carwash.common.DateUtil;
  * @date 8/10/19
  */
 public class AppointmentForm {
+    private int aid;
     private String carType;
     private String carOption;
     private String date;
@@ -41,8 +42,17 @@ public class AppointmentForm {
         appointment.setDate(DateUtil.String2Date(date));
         appointment.setTime(new TimeSlot(time).getTsid());
         appointment.setComment(comment);
+        appointment.setAid(aid);
 
         return appointment;
+    }
+
+    public int getAid() {
+        return aid;
+    }
+
+    public void setAid(int aid) {
+        this.aid = aid;
     }
 
     public String getCarType() {

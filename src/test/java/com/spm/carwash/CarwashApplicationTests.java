@@ -37,7 +37,7 @@ public class CarwashApplicationTests {
     @Test
     public void test() {
 //        appointmentService.deleteAppointment(9);
-        System.out.println(new Gson().toJson(appointmentService.getAppointDetail(11)));
+        System.out.println(new Gson().toJson(appointmentService.getAppointDetail(10)));
     }
 
 }

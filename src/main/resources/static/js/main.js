@@ -36,11 +36,11 @@
 
     $("#chooseDate").change(function(){
         var date = $('#chooseDate').val();
-        var time = (new Date(date)).getTime()
+        // var time = (new Date(date)).getTime()
         $.ajax({
             url:"/time/get",
             method:"POST",
-            data:{time},
+            data:{date},
             dataType: 'text',
             success:function(result){
                 if (result) {
@@ -69,17 +69,17 @@
         });
     });
 
-    // $(function() {
-    //     $('input[name="date"]').daterangepicker({
-    //         singleDatePicker: true,
-    //         showDropdowns: true,
-    //         minDate: moment(),
-    //         maxYear: parseInt(moment().format('YYYY'),10),
-    //         locale: {
-    //             format: 'DD/MM/YYYY'
-    //         }
-    //     });
-    // })
+    $(function() {
+        $('input[name="date"]').daterangepicker({
+            singleDatePicker: true,
+            showDropdowns: true,
+            minDate: moment(),
+            maxYear: parseInt(moment().format('YYYY'),10),
+            locale: {
+                format: 'DD/MM/YYYY'
+            }
+        });
+    })
 
 
     function validate (input) {

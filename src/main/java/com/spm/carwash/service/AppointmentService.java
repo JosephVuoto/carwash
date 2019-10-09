@@ -28,16 +28,16 @@ public class AppointmentService {
         appointmentDao.addUserAppointment(userDetailsService.getCurrentUser().getUid(), aid);
     }
 
-    public TimeResponse getTime(String time) {
+    public TimeResponse getTime(String dateStr) {
 //        dateStr = dateStr.replace("-", "/");
-        String dateStr = "";
-        try {
-            long t = Long.parseLong(time);
-            Date date = new Date(t);
-            dateStr = DateUtil.Date2String(date);
-        } catch (Exception e) {
-            e.printStackTrace();
-        }
+//        String dateStr = "";
+//        try {
+//            long t = Long.parseLong(time);
+//            Date date = new Date(t);
+//            dateStr = DateUtil.Date2String(date);
+//        } catch (Exception e) {
+//            e.printStackTrace();
+//        }
         System.out.println(dateStr);
         if (DateUtil.times.isEmpty()) {
             DateUtil.times = appointmentDao.selectAllTime();
@@ -80,5 +80,13 @@ public class AppointmentService {
 
     public AppointmentDetail getAppointDetail(Integer aid) {
         return new AppointmentDetail(appointmentDao.selectAppointmentById(aid));
+    }
+
+    public NewAppointment getAppointment(Integer aid) {
+        return appointmentDao.selectAppointmentById(aid).getNewAppointment();
+    }
+
+    public void updateAppointment(NewAppointment appointment) {
+        appointmentDao.updateAppointment(appointment);
     }
 }

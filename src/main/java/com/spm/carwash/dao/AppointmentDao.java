@@ -15,6 +15,8 @@ import java.util.List;
 public interface AppointmentDao {
     void addAppointment(NewAppointment appointment);
 
+    void updateAppointment(NewAppointment appointment);
+
     void addUserAppointment(@Param("uid") Integer uid,
                             @Param("aid") Integer aid);
 

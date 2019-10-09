@@ -17,6 +17,17 @@ public class Appointment {
     private String comment;
     private UserSimple user;
 
+    public NewAppointment getNewAppointment() {
+        NewAppointment appointment = new NewAppointment();
+        appointment.setAid(aid);
+        appointment.setCarType(carType);
+        appointment.setOption(option);
+        appointment.setComment(comment);
+        appointment.setDate(date);
+        appointment.setTime(time.getTsid());
+        return appointment;
+    }
+
     public Date getDate() {
         return date;
     }

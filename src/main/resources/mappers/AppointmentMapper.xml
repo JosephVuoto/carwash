@@ -46,6 +46,16 @@
         VALUES (NULL, #{carType}, #{date}, #{time}, #{option}, #{comment})
     </insert>
 
+    <update id="updateAppointment" parameterType="NewAppointment">
+        update appointment set
+        ctype = #{carType},
+        date = #{date},
+        time = #{time},
+        aoption = #{option},
+        comment = #{comment}
+        where aid = #{aid}
+    </update>
+
     <insert id="addUserAppointment">
         INSERT INTO `user_appointment` (`uaid`, `uid`, `aid`)
         VALUES (NULL, #{uid, jdbcType=INTEGER}, #{aid, jdbcType=INTEGER})

@@ -1,5 +1,6 @@
 package com.spm.carwash.controller;
 
+import com.google.gson.Gson;
 import com.spm.carwash.pojo.*;
 import com.spm.carwash.service.AppointmentService;
 import com.spm.carwash.service.UserDetailsServiceImpl;
@@ -53,6 +54,24 @@ public class LogicController {
         }
         return redirectView;
     }
+
+    @PostMapping("/doUpdate")
+    public RedirectView updateApp(AppointmentForm appointmentForm, RedirectAttributes redirectAttributes) {
+        RedirectView redirectView = new RedirectView();
+        redirectView.setContextRelative(true);
+        redirectView.setUrl("/");
+        //TODO redirect to home page
+
+        try {
+            appointmentService.updateAppointment(appointmentForm.getAppointment());
+
+        } catch (Exception e) {
+            //TODO
+            e.printStackTrace();
+        }
+        return redirectView;
+    }
+
     @PostMapping("/updateInfo")
     public RedirectView updateInfo(RegisterForm registerForm, RedirectAttributes redirectAttributes) {
         RedirectView redirectView = new RedirectView();
@@ -68,7 +87,6 @@ public class LogicController {
         return redirectView;
     }
 
-
     @PostMapping("/doSignnup")
     @ResponseBody
     public String doSignup() {
@@ -83,7 +101,7 @@ public class LogicController {
 
     @RequestMapping("/time/get")
     @ResponseBody
-    public TimeResponse getTime(String time) {
-        return appointmentService.getTime(time);
+    public TimeResponse getTime(String date) {
+        return appointmentService.getTime(date);
     }
 }
