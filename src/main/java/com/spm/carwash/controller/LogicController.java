@@ -3,6 +3,7 @@ package com.spm.carwash.controller;
 import com.google.gson.Gson;
 import com.spm.carwash.pojo.*;
 import com.spm.carwash.service.AppointmentService;
+import com.spm.carwash.service.NotificationService;
 import com.spm.carwash.service.UserDetailsServiceImpl;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.PostMapping;
@@ -26,6 +27,8 @@ public class LogicController {
     UserDetailsServiceImpl userDetailsService;
     @Resource
     AppointmentService appointmentService;
+    @Resource
+    NotificationService notificationService;
 
     @PostMapping("doSubmit")
     public RedirectView doSubmit(AppointmentForm appointmentForm, RedirectAttributes redirectAttributes) {
@@ -45,6 +48,7 @@ public class LogicController {
             try {
                 NewAppointment appointment = appointmentForm.getAppointment();
                 appointmentService.addAppointment(appointment);
+                notificationService.sendAppointmentEmail(appointmentForm, userDetailsService.getCurrentUser());
                 //TODO redirect to home page
             } catch (Exception e) {
                 e.printStackTrace();

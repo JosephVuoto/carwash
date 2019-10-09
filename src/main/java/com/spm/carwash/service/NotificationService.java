@@ -1,5 +1,7 @@
 package com.spm.carwash.service;
 
+import com.spm.carwash.pojo.AppointmentForm;
+import com.spm.carwash.pojo.User;
 import org.springframework.beans.factory.annotation.Value;
 import org.springframework.mail.SimpleMailMessage;
 import org.springframework.mail.javamail.JavaMailSender;
@@ -61,5 +63,20 @@ public class NotificationService {
         } catch (MessagingException e) {
             e.printStackTrace();
         }
+    }
+
+    public void sendAppointmentEmail(AppointmentForm appointmentForm, User user) {
+        StringBuilder sb = new StringBuilder();
+        sb.append("<p>Hi there,</p>");
+        sb.append("<p>Here is the information of your appointment: </p>");
+//        sb.append("<p>Name").append(user.getFirstname() + " " ).append("</p>");
+        sb.append("<p>Date: ").append(appointmentForm.getDate()).append("</p>");
+        sb.append("<p>Time: ").append(appointmentForm.getTime()).append("</p>");
+        sb.append("<p>Option: ").append(appointmentForm.getCarOption()).append("</p>");
+        sb.append("<p>Car type: ").append(appointmentForm.getCarType()).append("</p>");
+        sb.append("<p>Comment: ").append(appointmentForm.getComment()).append("</p>");
+        sb.append("<p>Regards</p>");
+        sb.append("<p>Gabriel & David</p>");
+        sendHtmlMail(user.getEmail(), "Your appointment.", sb.toString());
     }
 }
