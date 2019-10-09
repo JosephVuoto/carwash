@@ -4,7 +4,7 @@
     <resultMap id="appointmentMap" type="Appointment">
         <id column="aid" property="aid" jdbcType="INTEGER"/>
         <result column="ctype" property="carType" jdbcType="INTEGER" />
-        <result column="option" property="option" jdbcType="INTEGER" />
+        <result column="aoption" property="option" jdbcType="INTEGER" />
         <result column="comment" property="comment" jdbcType="VARCHAR"/>
         <result column="date" property="date" jdbcType="DATE" />
         <association property="user" javaType="UserSimple">

@@ -2,7 +2,6 @@ package com.spm.carwash.controller;
 
 import com.google.gson.Gson;
 import com.spm.carwash.pojo.AppointmentDetail;
-import com.spm.carwash.pojo.NewAppointment;
 import com.spm.carwash.pojo.User;
 import com.spm.carwash.service.AppointmentService;
 import com.spm.carwash.service.UserDetailsServiceImpl;
@@ -52,19 +51,18 @@ public class DefaultController {
         return "/user";
     }
 
-    @GetMapping("/update/{aid}")
+    @GetMapping("/detail/{aid}")
     public String update(Model model, @PathVariable("aid") int aid) {
         try {
             if (appointmentService.getAppointDetail(aid).getUser().getUid()
                     != userDetailsService.getCurrentUser().getUid()) {
                 return "/";
             }
+            AppointmentDetail appointment = appointmentService.getAppointDetail(aid);
+            model.addAttribute("app", appointment);
+            return "/detail";
         } catch (Exception e) {
             return "/";
         }
-        AppointmentDetail appointment = appointmentService.getAppointDetail(aid);
-        System.out.println(new Gson().toJson(appointment));
-        model.addAttribute("app", appointment);
-        return "/update";
     }
 }

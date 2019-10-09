@@ -1,7 +1,7 @@
 <!DOCTYPE html>
 <html lang="en" xmlns="http://www.w3.org/1999/xhtml" xmlns:th="http://www.thymeleaf.org">
 <head>
-    <title>Re-schedule</title>
+    <title>Appointment Detail</title>
 
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1">
@@ -24,7 +24,7 @@
         <div class="wrap-login100">
             <div class="login100-form-title" style="background-image: url(/images/banner.jpg);">
 					<span class="login100-form-title-1">
-						Re-schedule
+						Appointment Detail
 					</span>
                 <span class="login100-form-title-2">
 						Gabriel & David Car Wash
@@ -42,7 +42,7 @@
             </div>
 
 
-            <form th:action="@{/doUpdate}" method="post" class="login100-form validate-form">
+            <form id="submit" th:action="@{/doUpdate}" method="post" class="login100-form validate-form">
 
                 <div class="wrap-input100 validate-input m-b-18" data-validate = "Car type is required">
                     <span class="label-input100">Car type</span>
@@ -89,19 +89,32 @@
 
                 <input type="hidden" id="aid" name="aid" th:attr="value=${app.aid}">
 
+                <input type="hidden" id="delete" name="delete" value="0">
+
                 <div class="validate-input m-b-18">
                     <small>* is required</small>
                 </div>
 
                 <div class="container-login100-form-btn">
                     <button class="login100-form-btn">
-                        Submit
+                        Re-schedule
+                    </button>
+                    <button class="delete100-form-btn" onclick="doDelete()" style="margin-left: 45px">
+                        Delete
                     </button>
                 </div>
             </form>
         </div>
     </div>
 </div>
+
+<script>
+    function doDelete(){
+        document.getElementById("delete").value="1";
+        document.getElementById("submit").submit();
+    }
+</script>
+
 
 
 <script src="/vendor/jquery/jquery-3.2.1.min.js"></script>

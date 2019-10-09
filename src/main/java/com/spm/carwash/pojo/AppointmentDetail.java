@@ -2,8 +2,6 @@ package com.spm.carwash.pojo;
 
 import com.spm.carwash.common.DateUtil;
 
-import java.util.Date;
-
 /**
  * @author Yangzhe Xie
  * @date 8/10/19
@@ -21,10 +19,12 @@ public class AppointmentDetail {
         String[] carTypes = {"Hatchback", "Sedan", "SUV"};
         String[] options = {"Wash outside only $15", "Wash inside and outside $25", "Deluxe wash $30"};
         this.aid = appointment.getAid();
-        this.carType = carTypes[appointment.getCarType()];
+        this.carType = carTypes[appointment.getCarType() - 1];
+
         this.date = DateUtil.Date2String(appointment.getDate());
         this.time = appointment.getTime().getSlot();
-        this.option = options[appointment.getOption()];
+
+        this.option = options[appointment.getOption() - 1];
         this.comment = appointment.getComment();
         this.user = appointment.getUser();
     }

@@ -65,18 +65,18 @@ public class NotificationService {
         }
     }
 
-    public void sendAppointmentEmail(AppointmentForm appointmentForm, User user) {
+    public void sendAppointmentEmail(String title, AppointmentForm appointmentForm, User user) {
         StringBuilder sb = new StringBuilder();
         sb.append("<p>Hi there,</p>");
-        sb.append("<p>Here is the information of your appointment: </p>");
-//        sb.append("<p>Name").append(user.getFirstname() + " " ).append("</p>");
+        sb.append("<p>Here is the information of your appointment: </p><br>");
+        sb.append("<p>Name: ").append(user.getFirstname()).append(" ").append(user.getLastname()).append("</p>");
         sb.append("<p>Date: ").append(appointmentForm.getDate()).append("</p>");
         sb.append("<p>Time: ").append(appointmentForm.getTime()).append("</p>");
         sb.append("<p>Option: ").append(appointmentForm.getCarOption()).append("</p>");
         sb.append("<p>Car type: ").append(appointmentForm.getCarType()).append("</p>");
-        sb.append("<p>Comment: ").append(appointmentForm.getComment()).append("</p>");
+        sb.append("<p>Comment: ").append(appointmentForm.getComment()).append("</p><br>");
         sb.append("<p>Regards</p>");
         sb.append("<p>Gabriel & David</p>");
-        sendHtmlMail(user.getEmail(), "Your appointment.", sb.toString());
+        sendHtmlMail(user.getEmail(), title, sb.toString());
     }
 }

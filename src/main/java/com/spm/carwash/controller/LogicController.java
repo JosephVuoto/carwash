@@ -1,7 +1,9 @@
 package com.spm.carwash.controller;
 
-import com.google.gson.Gson;
-import com.spm.carwash.pojo.*;
+import com.spm.carwash.pojo.AppointmentForm;
+import com.spm.carwash.pojo.NewAppointment;
+import com.spm.carwash.pojo.RegisterForm;
+import com.spm.carwash.pojo.TimeResponse;
 import com.spm.carwash.service.AppointmentService;
 import com.spm.carwash.service.NotificationService;
 import com.spm.carwash.service.UserDetailsServiceImpl;
@@ -11,8 +13,6 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.ResponseBody;
 import org.springframework.web.servlet.mvc.support.RedirectAttributes;
 import org.springframework.web.servlet.view.RedirectView;
-import org.thymeleaf.templateresolver.ITemplateResolver;
-import org.thymeleaf.templateresolver.ServletContextTemplateResolver;
 
 import javax.annotation.Resource;
 import java.security.Principal;
@@ -32,6 +32,7 @@ public class LogicController {
 
     @PostMapping("doSubmit")
     public RedirectView doSubmit(AppointmentForm appointmentForm, RedirectAttributes redirectAttributes) {
+
         RedirectView redirectView = new RedirectView();
         redirectView.setContextRelative(true);
         redirectView.setUrl("/submit");
@@ -48,7 +49,7 @@ public class LogicController {
             try {
                 NewAppointment appointment = appointmentForm.getAppointment();
                 appointmentService.addAppointment(appointment);
-                notificationService.sendAppointmentEmail(appointmentForm, userDetailsService.getCurrentUser());
+                notificationService.sendAppointmentEmail("Your appointment.", appointmentForm, userDetailsService.getCurrentUser());
                 //TODO redirect to home page
             } catch (Exception e) {
                 e.printStackTrace();
@@ -67,7 +68,13 @@ public class LogicController {
         //TODO redirect to home page
 
         try {
-            appointmentService.updateAppointment(appointmentForm.getAppointment());
+            if (appointmentForm.getDelete().equals("1")) {
+                appointmentService.deleteAppointment(appointmentForm.getAid());
+                notificationService.sendAppointmentEmail("Your appointment is canceled.", appointmentForm, userDetailsService.getCurrentUser());
+            } else {
+                appointmentService.updateAppointment(appointmentForm.getAppointment());
+                notificationService.sendAppointmentEmail("Your appointment is updated.", appointmentForm, userDetailsService.getCurrentUser());
+            }
 
         } catch (Exception e) {
             //TODO

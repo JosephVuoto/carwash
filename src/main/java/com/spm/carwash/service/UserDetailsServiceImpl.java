@@ -1,6 +1,5 @@
 package com.spm.carwash.service;
 
-import com.google.gson.Gson;
 import com.spm.carwash.dao.UserDao;
 import com.spm.carwash.pojo.*;
 import org.springframework.security.core.context.SecurityContextHolder;
@@ -26,7 +25,6 @@ public class UserDetailsServiceImpl implements UserDetailsService {
     @Override
     public UserDetails loadUserByUsername(String s) throws UsernameNotFoundException {
         User user = userDao.selectByEmail(s);
-        System.out.println(new Gson().toJson(user));
         return new SecurityUser(user);
     }
 

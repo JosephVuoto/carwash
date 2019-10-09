@@ -1,14 +1,12 @@
 package com.spm.carwash.service;
 
 import com.spm.carwash.common.DateUtil;
-import com.spm.carwash.common.StringUtil;
 import com.spm.carwash.dao.AppointmentDao;
 import com.spm.carwash.pojo.*;
 import org.springframework.stereotype.Service;
 
 import javax.annotation.Resource;
 import java.util.ArrayList;
-import java.util.Date;
 import java.util.List;
 
 /**
@@ -38,7 +36,6 @@ public class AppointmentService {
 //        } catch (Exception e) {
 //            e.printStackTrace();
 //        }
-        System.out.println(dateStr);
         if (DateUtil.times.isEmpty()) {
             DateUtil.times = appointmentDao.selectAllTime();
         }

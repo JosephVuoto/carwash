@@ -13,6 +13,7 @@ public class AppointmentForm {
     private String date;
     private String time;
     private String comment;
+    private String delete;
 
     public NewAppointment getAppointment() {
         NewAppointment appointment = new NewAppointment();
@@ -93,5 +94,13 @@ public class AppointmentForm {
 
     public void setComment(String comment) {
         this.comment = comment;
+    }
+
+    public String getDelete() {
+        return delete;
+    }
+
+    public void setDelete(String delete) {
+        this.delete = delete;
     }
 }
