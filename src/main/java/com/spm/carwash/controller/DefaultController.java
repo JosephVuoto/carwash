@@ -54,8 +54,12 @@ public class DefaultController {
 
     @GetMapping("/update/{aid}")
     public String update(Model model, @PathVariable("aid") int aid) {
-        if (appointmentService.getAppointDetail(aid).getUser().getUid()
-                != userDetailsService.getCurrentUser().getUid()) {
+        try {
+            if (appointmentService.getAppointDetail(aid).getUser().getUid()
+                    != userDetailsService.getCurrentUser().getUid()) {
+                return "/";
+            }
+        } catch (Exception e) {
             return "/";
         }
         AppointmentDetail appointment = appointmentService.getAppointDetail(aid);
