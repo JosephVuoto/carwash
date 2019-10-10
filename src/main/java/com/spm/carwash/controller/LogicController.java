@@ -50,6 +50,8 @@ public class LogicController {
                 NewAppointment appointment = appointmentForm.getAppointment();
                 appointmentService.addAppointment(appointment);
                 notificationService.sendAppointmentEmail("Your appointment.", appointmentForm, userDetailsService.getCurrentUser());
+                redirectAttributes.addFlashAttribute("alertStatus", true);
+                redirectAttributes.addFlashAttribute("alert", "Appointment submitted.");
                 redirectView.setUrl("/");
             } catch (Exception e) {
                 e.printStackTrace();
@@ -70,9 +72,13 @@ public class LogicController {
             if (appointmentForm.getDelete().equals("1")) {
                 appointmentService.deleteAppointment(appointmentForm.getAid());
                 notificationService.sendAppointmentEmail("Your appointment is canceled.", appointmentForm, userDetailsService.getCurrentUser());
+                redirectAttributes.addFlashAttribute("alertStatus", true);
+                redirectAttributes.addFlashAttribute("alert", "Your information have been canceled.");
             } else {
                 appointmentService.updateAppointment(appointmentForm.getAppointment());
                 notificationService.sendAppointmentEmail("Your appointment is updated.", appointmentForm, userDetailsService.getCurrentUser());
+                redirectAttributes.addFlashAttribute("alertStatus", true);
+                redirectAttributes.addFlashAttribute("alert", "Your information have been updated.");
             }
 
         } catch (Exception e) {
@@ -87,6 +93,8 @@ public class LogicController {
         redirectView.setContextRelative(true);
         try {
             userDetailsService.updateUserInfo(registerForm);
+            redirectAttributes.addFlashAttribute("alertStatus", true);
+            redirectAttributes.addFlashAttribute("alert", "Your information have been updated.");
             redirectView.setUrl("/");
         } catch (Exception e) {
             redirectView.setUrl("/info");
