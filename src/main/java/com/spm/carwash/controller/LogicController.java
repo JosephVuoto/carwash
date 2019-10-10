@@ -104,12 +104,6 @@ public class LogicController {
         return redirectView;
     }
 
-    @PostMapping("/doSignnup")
-    @ResponseBody
-    public String doSignup() {
-        return "Hello world";
-    }
-
     @RequestMapping("/profile")
     @ResponseBody
     public Principal profile(Principal principal) {

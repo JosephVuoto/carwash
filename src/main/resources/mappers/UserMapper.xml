@@ -55,7 +55,7 @@
 
     <insert id="addUser" parameterType="User" useGeneratedKeys="true" keyProperty="uid">
         INSERT INTO user (`uid`, `email`, `password`, `firstname`, `lastname`, `address`, `phone_mobile`, `phone_home`, `phone_work`)
-        VALUES (NULL, #{email}, #{password}, #{fisrtname}, #{lastname}, #{address}, #{phoneMobile}, #{phoneHome}, #{phoneWork})
+        VALUES (NULL, #{email}, #{password}, #{firstname}, #{lastname}, #{address}, #{phoneMobile}, #{phoneHome}, #{phoneWork})
     </insert>
 
     <insert id="addUserCar" parameterType="UserCar">

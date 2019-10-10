@@ -24,8 +24,6 @@ public class UserController {
 
     @Resource
     UserDetailsServiceImpl userDetailsService;
-    @Resource
-    AppointmentService appointmentService;
 
     @PostMapping("/doSignup")
     public RedirectView doSignup(RegisterForm registerForm, RedirectAttributes redirectAttributes) {
@@ -61,6 +59,7 @@ public class UserController {
             RedirectView redirectView = new RedirectView();
             redirectView.setContextRelative(true);
             redirectView.setUrl("/signup");
+            e.printStackTrace();
             redirectAttributes.addFlashAttribute("alertStatus", true);
             redirectAttributes.addFlashAttribute("alert", "Unknown error. Please try again.");
             return redirectView;
