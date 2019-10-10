@@ -70,17 +70,19 @@ public class NotificationService {
         if (!Constant.SEND_EMAIL) {
             return;
         }
-        StringBuilder sb = new StringBuilder();
-        sb.append("<p>Hi there,</p>");
-        sb.append("<p>Here is the information of your appointment: </p><br>");
-        sb.append("<p>Name: ").append(user.getFirstname()).append(" ").append(user.getLastname()).append("</p>");
-        sb.append("<p>Date: ").append(appointmentForm.getDate()).append("</p>");
-        sb.append("<p>Time: ").append(appointmentForm.getTime()).append("</p>");
-        sb.append("<p>Option: ").append(appointmentForm.getCarOption()).append("</p>");
-        sb.append("<p>Car type: ").append(appointmentForm.getCarType()).append("</p>");
-        sb.append("<p>Comment: ").append(appointmentForm.getComment()).append("</p><br>");
-        sb.append("<p>Regards</p>");
-        sb.append("<p>Gabriel & David</p>");
-        sendHtmlMail(user.getEmail(), title, sb.toString());
+        new Thread(() -> {
+            StringBuilder sb = new StringBuilder();
+            sb.append("<p>Hi there,</p>");
+            sb.append("<p>Here is the information of your appointment: </p><br>");
+            sb.append("<p>Name: ").append(user.getFirstname()).append(" ").append(user.getLastname()).append("</p>");
+            sb.append("<p>Date: ").append(appointmentForm.getDate()).append("</p>");
+            sb.append("<p>Time: ").append(appointmentForm.getTime()).append("</p>");
+            sb.append("<p>Option: ").append(appointmentForm.getCarOption()).append("</p>");
+            sb.append("<p>Car type: ").append(appointmentForm.getCarType()).append("</p>");
+            sb.append("<p>Comment: ").append(appointmentForm.getComment()).append("</p><br>");
+            sb.append("<p>Regards</p>");
+            sb.append("<p>Gabriel & David</p>");
+            sendHtmlMail(user.getEmail(), title, sb.toString());
+        }).start();
     }
 }

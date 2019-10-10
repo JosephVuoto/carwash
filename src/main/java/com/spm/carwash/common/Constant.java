@@ -5,5 +5,5 @@ package com.spm.carwash.common;
  * @date 10/10/19
  */
 public class Constant {
-    public static final boolean SEND_EMAIL = false;
+    public static final boolean SEND_EMAIL = true;
 }
