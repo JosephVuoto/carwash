@@ -1,6 +1,8 @@
 package com.spm.carwash.controller;
 
 import com.google.gson.Gson;
+import com.spm.carwash.exception.PermissionDeniedException;
+import com.spm.carwash.exception.UnknownException;
 import com.spm.carwash.pojo.AppointmentDetail;
 import com.spm.carwash.pojo.SimpleAppointment;
 import com.spm.carwash.pojo.User;
@@ -10,6 +12,7 @@ import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;
+import org.springframework.web.servlet.mvc.support.RedirectAttributes;
 
 import javax.annotation.Resource;
 import java.util.List;
@@ -26,27 +29,31 @@ public class DefaultController {
     AppointmentService appointmentService;
 
     @GetMapping("/")
-    public String index(Model model) {
-        User user = userDetailsService.getCurrentUser();
-        model.addAttribute("name", user.getFirstname() + " " + user.getLastname());
-        if (user.getRole() == 0) {
-            model.addAttribute("title", "Your appointments");
-            model.addAttribute("user", true);
-            List<SimpleAppointment> apps = appointmentService.getUserAppointments(user.getUid());
-            for (SimpleAppointment app: apps) {
-                app.setLinks(0);
+    public String index(Model model) throws UnknownException {
+        try {
+            User user = userDetailsService.getCurrentUser();
+            model.addAttribute("name", user.getFirstname() + " " + user.getLastname());
+            if (user.getRole() == 0) {
+                model.addAttribute("title", "Your appointments");
+                model.addAttribute("user", true);
+                List<SimpleAppointment> apps = appointmentService.getUserAppointments(user.getUid());
+                for (SimpleAppointment app: apps) {
+                    app.setLinks(0);
+                }
+                model.addAttribute("apps", apps);
+            } else {
+                model.addAttribute("title", "All appointments");
+                model.addAttribute("user", false);
+                List<SimpleAppointment> apps = appointmentService.getAllAppointments();
+                for (SimpleAppointment app: apps) {
+                    app.setLinks(1);
+                }
+                model.addAttribute("apps", apps);
             }
-            model.addAttribute("apps", apps);
-        } else {
-            model.addAttribute("title", "All appointments");
-            model.addAttribute("user", false);
-            List<SimpleAppointment> apps = appointmentService.getAllAppointments();
-            for (SimpleAppointment app: apps) {
-                app.setLinks(1);
-            }
-            model.addAttribute("apps", apps);
+            return "/list";
+        } catch (Exception e) {
+            throw new UnknownException();
         }
-        return "/list";
     }
 
     @GetMapping("/login")
@@ -73,17 +80,24 @@ public class DefaultController {
     }
 
     @GetMapping("/detail/{aid}")
-    public String update(Model model, @PathVariable("aid") int aid) {
+    public String update(Model model, @PathVariable("aid") int aid) throws UnknownException {
         try {
-            if (appointmentService.getAppointDetail(aid).getUser().getUid()
-                    != userDetailsService.getCurrentUser().getUid()) {
-                return "/";
-            }
+            User user = userDetailsService.getCurrentUser();
             AppointmentDetail appointment = appointmentService.getAppointDetail(aid);
-            model.addAttribute("app", appointment);
-            return "/detail";
+            if (user.getRole() == 1) {
+                model.addAttribute("app", appointment);
+                model.addAttribute("user", appointment.getUser());
+                return "/appointment";
+            } else if (appointmentService.getAppointDetail(aid).getUser().getUid()
+                    != user.getUid()) {
+                throw new PermissionDeniedException();
+            } else {
+                model.addAttribute("app", appointment);
+                return "/detail";
+            }
         } catch (Exception e) {
-            return "/";
+            e.printStackTrace();
+            throw new UnknownException();
         }
     }
 }

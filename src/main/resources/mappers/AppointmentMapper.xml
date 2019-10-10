@@ -10,12 +10,13 @@
         <association property="user" javaType="UserSimple">
             <id column="uid" property="uid" jdbcType="INTEGER"/>
             <result column="email" property="email" jdbcType="VARCHAR"/>
-            <result column="name" property="name" jdbcType="VARCHAR"/>
+            <result column="firstname" property="firstname" jdbcType="VARCHAR"/>
+            <result column="lastname" property="lastname" jdbcType="VARCHAR"/>
             <result column="address" property="address" jdbcType="VARCHAR"/>
             <result column="phone_mobile" property="phoneMobile" jdbcType="VARCHAR"/>
             <result column="phone_home" property="phoneHome" jdbcType="VARCHAR"/>
             <result column="phone_work" property="phoneWork" jdbcType="VARCHAR"/>
-            <result column="role" property="role" jdbcType="INTEGER" />
+            <result column="role" property="role" jdbcType="INTEGER"/>
             <result column="enabled" property="enabled" jdbcType="BOOLEAN"/>
         </association>
         <association property="time" javaType="TimeSlot">

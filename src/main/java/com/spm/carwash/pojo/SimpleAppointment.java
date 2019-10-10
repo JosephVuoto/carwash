@@ -30,12 +30,7 @@ public class SimpleAppointment {
     }
 
     public void setLinks(int role) {
-        if (role == 0) {
-            link = "/detail/" + aid;
-        } else {
-            //TODO
-            link = "#";
-        }
+        link = "/detail/" + aid;
     }
 
     public int getAid() {
