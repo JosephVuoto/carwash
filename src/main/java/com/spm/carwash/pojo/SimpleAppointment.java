@@ -1,6 +1,9 @@
 package com.spm.carwash.pojo;
 
+import com.google.gson.Gson;
 import com.spm.carwash.common.DateUtil;
+
+import java.util.List;
 
 /**
  * @author Yangzhe Xie
@@ -13,16 +16,26 @@ public class SimpleAppointment {
     private String time;
     private String option;
     private String comment;
+    private String link;
 
     public SimpleAppointment(Appointment appointment) {
         String[] carTypes = {"Hatchback", "Sedan", "SUV"};
         String[] options = {"Wash outside only $15", "Wash inside and outside $25", "Deluxe wash $30"};
         this.aid = appointment.getAid();
-        this.carType = carTypes[appointment.getCarType()];
+        this.carType = carTypes[appointment.getCarType() - 1];
         this.date = DateUtil.Date2String(appointment.getDate());
         this.time = appointment.getTime().getSlot();
-        this.option = options[appointment.getOption()];
+        this.option = options[appointment.getOption() - 1];
         this.comment = appointment.getComment();
+    }
+
+    public void setLinks(int role) {
+        if (role == 0) {
+            link = "/detail/" + aid;
+        } else {
+            //TODO
+            link = "#";
+        }
     }
 
     public int getAid() {
@@ -71,5 +84,13 @@ public class SimpleAppointment {
 
     public void setComment(String comment) {
         this.comment = comment;
+    }
+
+    public String getLink() {
+        return link;
+    }
+
+    public void setLink(String link) {
+        this.link = link;
     }
 }

@@ -2,6 +2,7 @@ package com.spm.carwash.controller;
 
 import com.google.gson.Gson;
 import com.spm.carwash.pojo.AppointmentDetail;
+import com.spm.carwash.pojo.SimpleAppointment;
 import com.spm.carwash.pojo.User;
 import com.spm.carwash.service.AppointmentService;
 import com.spm.carwash.service.UserDetailsServiceImpl;
@@ -11,6 +12,7 @@ import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;
 
 import javax.annotation.Resource;
+import java.util.List;
 
 /**
  * @author Yangzhe Xie
@@ -24,14 +26,25 @@ public class DefaultController {
     AppointmentService appointmentService;
 
     @GetMapping("/")
-    public String test(Model model) {
+    public String index(Model model) {
         User user = userDetailsService.getCurrentUser();
+        model.addAttribute("name", user.getFirstname() + " " + user.getLastname());
         if (user.getRole() == 0) {
             model.addAttribute("title", "Your appointments");
             model.addAttribute("user", true);
+            List<SimpleAppointment> apps = appointmentService.getUserAppointments(user.getUid());
+            for (SimpleAppointment app: apps) {
+                app.setLinks(0);
+            }
+            model.addAttribute("apps", apps);
         } else {
             model.addAttribute("title", "All appointments");
             model.addAttribute("user", false);
+            List<SimpleAppointment> apps = appointmentService.getAllAppointments();
+            for (SimpleAppointment app: apps) {
+                app.setLinks(1);
+            }
+            model.addAttribute("apps", apps);
         }
         return "/list";
     }

@@ -1,5 +1,6 @@
 package com.spm.carwash.service;
 
+import com.spm.carwash.common.Constant;
 import com.spm.carwash.pojo.AppointmentForm;
 import com.spm.carwash.pojo.User;
 import org.springframework.beans.factory.annotation.Value;
@@ -66,6 +67,9 @@ public class NotificationService {
     }
 
     public void sendAppointmentEmail(String title, AppointmentForm appointmentForm, User user) {
+        if (!Constant.SEND_EMAIL) {
+            return;
+        }
         StringBuilder sb = new StringBuilder();
         sb.append("<p>Hi there,</p>");
         sb.append("<p>Here is the information of your appointment: </p><br>");

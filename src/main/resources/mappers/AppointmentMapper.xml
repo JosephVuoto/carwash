@@ -33,12 +33,14 @@
     <select id="selectAllAppointments" resultMap="appointmentMap">
         select * from appointment left join user_appointment on appointment.aid = user_appointment.aid
         left join user on user_appointment.uid = user.uid join time_slot on time_slot.tsid = appointment.time
+        order by appointment.date desc
     </select>
 
     <select id="selectAppointmentByUser" resultMap="appointmentMap" parameterType="Integer">
         select * from appointment left join user_appointment on appointment.aid = user_appointment.aid
         left join user on user_appointment.uid = user.uid join time_slot on time_slot.tsid = appointment.time
         where user.uid = #{uid}
+        order by appointment.date desc
     </select>
 
     <insert id="addAppointment" parameterType="NewAppointment"  useGeneratedKeys="true" keyProperty="aid">

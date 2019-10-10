@@ -50,7 +50,7 @@ public class LogicController {
                 NewAppointment appointment = appointmentForm.getAppointment();
                 appointmentService.addAppointment(appointment);
                 notificationService.sendAppointmentEmail("Your appointment.", appointmentForm, userDetailsService.getCurrentUser());
-                //TODO redirect to home page
+                redirectView.setUrl("/");
             } catch (Exception e) {
                 e.printStackTrace();
                 redirectAttributes.addFlashAttribute("alertStatus", true);
@@ -65,7 +65,6 @@ public class LogicController {
         RedirectView redirectView = new RedirectView();
         redirectView.setContextRelative(true);
         redirectView.setUrl("/");
-        //TODO redirect to home page
 
         try {
             if (appointmentForm.getDelete().equals("1")) {
@@ -77,7 +76,6 @@ public class LogicController {
             }
 
         } catch (Exception e) {
-            //TODO
             e.printStackTrace();
         }
         return redirectView;
@@ -87,11 +85,11 @@ public class LogicController {
     public RedirectView updateInfo(RegisterForm registerForm, RedirectAttributes redirectAttributes) {
         RedirectView redirectView = new RedirectView();
         redirectView.setContextRelative(true);
-        redirectView.setUrl("/info");
         try {
             userDetailsService.updateUserInfo(registerForm);
-            //TODO redirect to home page
+            redirectView.setUrl("/");
         } catch (Exception e) {
+            redirectView.setUrl("/info");
             redirectAttributes.addFlashAttribute("alertStatus", true);
             redirectAttributes.addFlashAttribute("alert", "Unknown error. Please try again.");
         }

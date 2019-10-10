@@ -5,6 +5,7 @@ import com.spm.carwash.common.DateUtil;
 import com.spm.carwash.dao.AppointmentDao;
 import com.spm.carwash.dao.UserDao;
 import com.spm.carwash.pojo.NewAppointment;
+import com.spm.carwash.pojo.SimpleAppointment;
 import com.spm.carwash.pojo.User;
 import com.spm.carwash.pojo.UserCar;
 import com.spm.carwash.service.AppointmentService;
@@ -40,7 +41,7 @@ public class CarwashApplicationTests {
     @Test
     public void test() {
 //        appointmentService.deleteAppointment(12);
-//        System.out.println(new Gson().toJson(appointmentDao.selectAppointmentById(10)));
+        System.out.println(new Gson().toJson(appointmentService.getAllAppointments()));
 //        appointmentService.deleteAppointment(9);
 //        System.out.println(new Gson().toJson(appointmentService.getAppointDetail(10)));
 //        notificationService.sendSimpleMail("joseph.vuoto@gmail.com", "hello", "world");
