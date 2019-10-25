@@ -29,4 +29,6 @@ public interface UserDao {
     void updateUserInfo(User user);
 
     void updateUserCar(UserCar car);
+
+    List<String> getAllManagerEmail();
 }

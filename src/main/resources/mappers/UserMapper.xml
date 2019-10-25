@@ -81,4 +81,8 @@
         car_number = #{carNumber}
         where uid = #{uid}
     </update>
+
+    <select id="getAllManagerEmail" resultType="String">
+        SELECT email from user where role = 1
+    </select>
 </mapper>

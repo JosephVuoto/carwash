@@ -41,10 +41,11 @@ public class CarwashApplicationTests {
     @Test
     public void test() {
 //        appointmentService.deleteAppointment(12);
-        System.out.println(new Gson().toJson(appointmentService.getAllAppointments()));
+//        System.out.println(new Gson().toJson(appointmentService.getAllAppointments()));
 //        appointmentService.deleteAppointment(9);
 //        System.out.println(new Gson().toJson(appointmentService.getAppointDetail(10)));
 //        notificationService.sendSimpleMail("joseph.vuoto@gmail.com", "hello", "world");
+        System.out.println(userDao.getAllManagerEmail());
     }
 
 }

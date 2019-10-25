@@ -73,7 +73,7 @@
         $('input[name="date"]').daterangepicker({
             singleDatePicker: true,
             showDropdowns: true,
-            minDate: moment(),
+            minDate: moment().add(1, "day"),
             maxYear: parseInt(moment().format('YYYY'),10),
             locale: {
                 format: 'DD/MM/YYYY'
